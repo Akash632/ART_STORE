@@ -1,0 +1,196 @@
+.news-letter-container{
+    background-color: #cbbdbd;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+.news-letter-input-container{
+    width: 50%;
+    display: flex;
+}
+.news-letter-heading{
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+    margin-left: 50px;
+}
+.news-letter-input{
+    width: 79%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+     font-family: 'Source Serif 4', serif;
+     font-size: 20px;
+}
+.news-letter-button{
+    color: white;
+    background-color: #372b28;
+    border-style: none;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    width: 20%;
+    height: 100%;
+}
+.footer-bg{
+    background-color: #f4e8e8;
+    box-sizing: border-box;
+    display: flex;
+    padding: 20px;
+    justify-content: space-evenly;
+}
+.footer-social-media{
+    width: 30%;
+    box-sizing: border-box; 
+}
+.footer-social-media-logo{
+    display: flex;
+    align-items: center;
+}
+.footer-social-media-logo>img{
+    width: 80px;
+}
+.footer-social-media-logo>h1{
+    font-family: 'Satisfy', cursive;
+}
+.footer-social-media-text{
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.footer-contact-details{
+    display: flex;
+    align-items: center;
+}
+.footer-terms-container{
+    width: 30%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+}
+.footer-terms-heading-container{
+    padding: 20px;
+}
+.footer-terms-container>h2{
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+}
+.footer-terms-container>div{
+    text-align: center;
+}
+.footer-contact-details-bg{
+    width: 30%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+}
+.footer-contact-sub-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.footer-contact-details{
+    width: fit-content;
+}
+.copyright-container{
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+@media screen and (min-width:320px) and (max-width:576px) {
+    .news-letter-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .news-letter-heading{
+        font-size: 20px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+    .news-letter-input-container{
+        width: 100%;
+    }
+    .news-letter-input{
+        width: 60%;
+        font-size: 15px;
+    }
+    .news-letter-button{
+        width: 40%;
+        font-size: 15px;
+    }
+    .footer-bg{
+        display: flex;
+        flex-direction: column;
+    }
+    .footer-social-media{
+        width: 100%;
+    }
+    .footer-terms-container{
+        width: 100%;
+    }
+    .footer-contact-details-bg{
+        width: 100%;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .news-letter-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .news-letter-input-container{
+        width: 80%;
+        margin-top: 20px;
+    }
+    .news-letter-input{
+        width: 70%;
+    }
+    .news-letter-button{
+        font-size: 20px;
+        height: 100%;
+        width: 30%;
+    }
+    .footer-social-media{
+        width: 100%;
+    }
+    .footer-contact-details-bg{
+        width: 100%;
+    }
+    .footer-terms-container{
+        width: 100%;
+    }
+    .footer-bg{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .news-letter-input{
+        width: 69%;
+    }
+    .news-letter-button{
+        font-size: 20px;
+        height: 100%;
+        width: 31%;
+    }
+}

@@ -1,0 +1,116 @@
+.shop-container-bg{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+.shop-image-container-bg{
+    width: 23%;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+.shop-image-container{
+    width: 100%;
+    position: relative;
+}
+.shop-image-container>img{
+    width: 100%;
+}
+.shop-offer-container{
+    position: absolute;
+    top: 0%;
+    font-family: 'Source Serif 4', serif;
+    background-color: #613d3c;
+    color: white;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.shop-offer-container>span{
+    font-size: 12px;
+}
+.shop-card-text-container{
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.shop-card-text-container>h1{
+    font-size: 20px;
+}
+.shop-card-original-price{
+    color: #8a8a8a;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.shop-card-discount-price{  
+    color:#372b28;
+    text-decoration: none;
+    font-weight: 700;
+}
+.shop-card-pagination{
+    display: flex;
+    justify-content: center;
+}
+.shop-card-pagination>div{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+.shop-card-pagination-numbers{
+    box-sizing: border-box;
+    padding: 8px;    
+    cursor: pointer;
+    background-color: #613d3c;
+    color: white;
+    font-family: 'Source Serif 4', serif;
+}
+.shop-card-price-container{
+    margin-top: 10px;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .shop-image-container-bg{
+        width: 100%;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .shop-image-container-bg{
+        width: 48%;
+    }
+    .shop-card-text-container>h1{
+        font-size: 15px;
+    }
+    .shop-card-original-price{
+        font-size: 13px;
+    }
+    .shop-card-discount-price{  
+        font-size: 13px;
+    }
+    .shop-offer-container>span{
+        font-size: 10px;
+    }
+    .shop-offer-container{
+        padding: 2px;
+        box-sizing: border-box;
+        width: fit-content;
+    }
+
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .shop-image-container-bg{
+        width: 23%;
+    }
+}
+@media screen and (min-width:1025px) and (max-width:1441px){
+    .shop-card-text-container>h1{
+        font-size: 15px;
+    }
+    .shop-card-original-price{
+        font-size: 13px;
+    }
+    .shop-card-discount-price{  
+        font-size: 13px;
+    }
+    .shop-offer-container>span{
+        font-size: 10px;
+    }
+}

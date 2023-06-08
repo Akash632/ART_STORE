@@ -1,0 +1,148 @@
+.contact-details-main-container{
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contact-poster-container>img{
+    width: 100%;
+}
+.contact-details{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.contact-details-container{
+    width: 45%;
+    padding: 20px;
+}
+.contact-details-container>h1{
+    margin-bottom: 15px;
+}
+.form-main-container{
+    width: 45%;
+    background-color: #f4e8e8;
+    padding: 20px;
+}
+.form-name-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.form-name,.form-phone{
+    width: 45%;
+    height: 40px;
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+}
+.form-email{
+    height: 40px;
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+    width: 100%;
+}
+.form-comment{
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+}
+.contact-input-form-container{
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.contact-card-button{
+    color: white;
+    background-color: #372b28;
+    border-style: none;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .contact-details-main-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .contact-details-container{
+        width: 100%;
+    }
+    .contact-details-container>p,.contact-details>p{
+        font-size: 13px;
+    }
+    .form-main-container{
+        width: 100%;
+        height: 440px;
+    }
+    .form-name-container{
+        display: flex;
+        flex-direction: column;
+        height: 90px;
+        font-size: 10px;
+    }
+    .form-name,.form-phone{
+        width: 100%;
+    }
+    .form-name,.form-phone,.form-email,.form-comment{
+        font-size: 13px;
+    }
+    .form-main-container>h1, .contact-details-container>h1{
+        font-size: 23px;
+    }
+    .contact-card-button{
+        font-size: 13px;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .form-main-container>h1, .contact-details-container>h1{
+        font-size: 23px;
+    }
+    .contact-details-container>p,.contact-details>p{
+        font-size: 13px;
+    }
+    .form-name-container{
+        display: flex;
+        flex-direction: column;
+        height: 90px;
+        font-size: 10px;
+    }
+    .form-name,.form-phone{
+        width: 100%;
+    }
+    .form-name,.form-phone,.form-email,.form-comment{
+        font-size: 13px;
+    }
+    .form-main-container{
+        width: 50%;
+        height: 430px;
+    }
+    .contact-card-button{
+        font-size: 13px;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .form-main-container>h1, .contact-details-container>h1{
+        font-size: 23px;
+    }
+    .contact-details-container>p,.contact-details>p{
+        font-size: 13px;
+    }
+    .form-name,.form-phone,.form-email,.form-comment{
+        font-size: 13px;
+    }
+    .contact-card-button{
+        font-size: 13px;
+    }
+}

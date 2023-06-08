@@ -1,0 +1,109 @@
+.category-card-bg{
+    background-color: #f4e8e8;
+    display: flex;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 0px;
+    justify-content: space-around;
+    width: 100%;
+}
+.shop-heading{
+    display: flex;
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+}
+.category-card-images-container{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.category-card-images-container>div>img{
+    height: 550px;
+    width: 100%;
+}
+.shop-heading>h1{
+    color: #c6aead;
+    font-family: 'Roboto Serif', serif;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    letter-spacing: 20px;
+    font-size: 100px;
+}
+.category-card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 32%;
+}
+.category-card-button{
+    color: white;
+    background-color: #372b28;
+    border-style: none;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 15px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    position: absolute;
+    top: 85%;
+    left: 0%;
+}
+@media screen and (min-width:320px) and (max-width:577px){
+    .shop-heading>h1{
+        writing-mode: horizontal-tb;
+        transform: rotate(360deg);
+        letter-spacing: 20px;
+        font-size: 70px;
+    }
+    .shop-heading{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .category-card-bg{
+        display: flex;
+        flex-direction: column;
+    }
+    .category-card-images-container>div>img{
+        width: 100%;
+    }
+    .category-card-images-container{
+        width: 100%;
+    }
+    .category-card-container{
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+@media screen and (min-width:577px) and (max-width:1440px){
+    .shop-heading>h1{
+        writing-mode: horizontal-tb;
+        transform: rotate(360deg);
+        letter-spacing: 20px;
+        font-size: 70px;
+    }
+    .category-card-bg{
+        display: flex;
+        flex-direction: column;
+    }
+    .shop-heading{
+        width: 100%;
+    }
+    .category-card-container{
+        width: 32%;
+    }
+    .category-card-images-container{
+        width: 100%;
+        padding: 10px;
+    }
+    .category-card-container>img{
+        width: 100%;
+    }
+    .category-card-button{
+        font-size: 10px;
+    }
+}

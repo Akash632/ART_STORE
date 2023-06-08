@@ -1,0 +1,69 @@
+.carousal-bg-container{
+    position: relative;
+}
+.carousal-image{
+    width: 100%;
+}
+.carousal-btn-container{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 99%;
+    left: 0.5%;
+}
+.carousal-btn-container>button{
+    color: white;
+    background-color: #372b28;
+    border: none;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.carousal-btn-container-small{
+    display: none;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .carousal-btn-container{
+        display: none;
+    }
+    .carousal-btn-container{
+        top:25%
+    }
+    .carousal-btn-container-small{
+        display: block;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        width: 99%;
+        left: 0.5%;
+    }
+    .carousal-btn-container-small>button{
+        color: white;
+        background-color: #372b28;
+        border: none;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .carousal-btn-container-small{
+        display: none;
+    }
+    .carousal-btn-container{        
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 40%;
+        width: 99%;
+        left: 0.5%;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .carousal-btn-container{        
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        width: 99%;
+        left: 0.5%;
+    }
+}

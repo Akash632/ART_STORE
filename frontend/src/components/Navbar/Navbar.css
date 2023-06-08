@@ -1,0 +1,110 @@
+.navbar-bg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+}
+.navbar-logo{
+    display: flex;
+    font-family: 'Satisfy', cursive;
+    align-items: center;
+    color: #372b28;
+}
+.navbar-top-section{
+    background-color: #372b28;
+    color: white;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    text-align: center;
+}
+.navbar-logo>img{
+    width: 100px;
+}
+.navbar-options{
+    display: flex;
+    width: 45%;
+    justify-content: space-evenly;
+    font-family: Roboto;
+    font-size: 20px;
+    color: #372b28;
+    cursor: pointer;
+}
+.navbar-options-button{
+    color: #372b28;
+    text-decoration: none;
+}
+.navbar-icons{
+    display: flex;
+    width: 10%;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.navbar-ham-burger{
+    display: none;
+}
+.navbar-icons-small{
+    display: none;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .navbar-options{
+        display: none;
+    }
+    .navbar-logo>img{
+        width: 35px;
+    }
+    .navbar-logo>h1{
+        font-size: 15px;
+    }
+    .navbar-ham-burger{
+        display: block;
+    }
+    .navbar-icons{
+        display: none;
+    }
+    .navbar-icons-small{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 20%;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px) {
+    .navbar-logo>img{
+        width: 45px;
+    }
+    .navbar-logo>h1{
+        font-size: 20px;
+    }
+    .navbar-ham-burger{
+        display: block;
+    }
+    .navbar-options{
+        display: none;
+    }
+    .navbar-icons{
+        display: none;
+    }
+    .navbar-icons-small{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 10%;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .navbar-logo>img{
+        width: 70px;
+    }
+    .navbar-logo>h1{
+        font-size: 25px;
+    }   
+}
+@media screen and (min-width:1025px) and (max-width:1440px){
+    .navbar-logo>img{
+        width: 80px;
+    }
+    .navbar-logo>h1{
+        font-size: 28px;
+    }
+}

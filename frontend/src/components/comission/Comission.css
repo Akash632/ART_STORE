@@ -1,0 +1,212 @@
+.comission-page-heading-container{
+    background-color: #f4e8e8;
+    height: 200px;
+}
+.comission-bg{
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px;
+    justify-content: space-evenly;
+    font-family: 'Source Serif 4', serif;
+    color: #372b28;
+}
+.comission-card-content{
+    width: 40%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.comission-card-image{
+    width: 40%;
+}
+.comission-card-image>img{
+    width: 100%;
+}
+.comission-card-form-container{
+    background-color: #f4e8e8;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 70%;
+}
+.comission-form-name-container{
+    display: flex;
+    justify-content: space-between;
+}
+.comission-form-name,.comission-form-phone{
+    width: 45%;
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+}
+.comission-form-email{
+    height: 40px;
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+    width: 100%;
+}
+.comission-form-comment{
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+    width: 100%;
+}
+.comission-card-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.comission-button{
+    color: white;
+    background-color: #372b28;
+    border-style: none;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+.comission-card-image-small{
+    display: none;
+}
+.comission-page-heading-container>img{
+    display: none;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .comission-bg{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .comission-card-content{
+        width: 100%;
+    }
+    .comission-card-image{
+        width: 100%;
+    }
+    .comission-page-heading-container{
+        height: 80px;
+    }
+    .comission-card-content-heading{
+        font-size: 25px;
+    }
+    .comission-card-image-small{
+        display: block;
+        width:100%;
+        margin-top: 15px;
+    }
+    .comission-card-image-small>img{
+        width: 100%;
+    }
+    .comission-card-image{
+        display: none;
+    }
+    .comission-card-form-container{
+        height: 490px;
+        margin-top: 15px;
+    }
+    .comission-form-name-container{
+        display: flex;
+        flex-direction: column;
+        height: 20%;
+    }
+    .comission-form-name{
+        width: 100%;
+    }
+    .comission-form-phone{
+        width: 100%;
+    }
+    .comission-card-content-para{
+        margin-top: 15px;
+    }
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .comission-page-heading-container{
+        height: 150px;
+    }
+    .comission-card-content-heading{
+        font-size: 25px;
+    }
+    .comission-card-image{
+        display: none;
+    }
+    .comission-card-content{
+        width: 100%;
+    }
+    .comission-card-form-container{
+        height: 450px;
+        margin-top: 15px;
+    }
+    .comission-card-content-para{
+        margin-top: 15px;
+    }
+    .comission-bg{
+        padding: 20px;
+    }
+    .comission-page-heading-container>img{
+        display: block;
+        width: 100%;
+    }
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .comission-card-image{
+        display: none;
+    }
+    .comission-card-content-container{
+        width: 50%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .comission-card-content{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding: 0px;
+    }
+    .comission-bg{
+        padding: 20px;
+    }
+    .comission-card-form-container{
+        width: 50%;
+        height: 430px;
+    }
+    .comission-card-content-para{
+        margin-top: 15px;
+    }
+    .comission-page-heading-container>img{
+        display: block;
+        width: 100%;
+    }
+}
+@media screen and (min-width:1025px) and (max-width:1440px) {
+    .comission-bg{
+        padding: 20px;
+    }
+    .comission-card-content{
+        width: 50%;
+    }
+    .comission-card-image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .comission-card-content-para{
+        margin-top: 15px;
+    }
+    .comission-card-form-container{
+        height: 450px;
+        margin-top: 15px;
+    }
+    
+}
