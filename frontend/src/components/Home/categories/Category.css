@@ -57,7 +57,7 @@
     .shop-heading>h1{
         writing-mode: horizontal-tb;
         transform: rotate(360deg);
-        letter-spacing: 20px;
+        letter-spacing: 10px;
         font-size: 70px;
     }
     .shop-heading{
@@ -67,6 +67,7 @@
     .category-card-bg{
         display: flex;
         flex-direction: column;
+        padding: 10px 10px 10px 10px;
     }
     .category-card-images-container>div>img{
         width: 100%;
@@ -89,6 +90,7 @@
     .category-card-bg{
         display: flex;
         flex-direction: column;
+        padding: 10px 10px 10px 10px;
     }
     .shop-heading{
         width: 100%;

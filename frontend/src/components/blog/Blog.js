@@ -1,8 +1,16 @@
-import React from "react";
+import React,{useContext} from "react";
 import './Blog.css';
+import { UserContext } from "../../context/context";
+import { disableScroll,enableScroll } from "../../functions/functions";
 
 
 function Blog() {
+  const {navStatus,setNavStatus}=useContext(UserContext);
+  if(navStatus){
+    disableScroll()
+  }else{
+    enableScroll();
+  }
   const blogs = [
     {
       src: "https://cdn.shopify.com/s/files/1/0716/7367/6072/articles/08.gif?v=1675933370&width=360",
@@ -40,8 +48,8 @@ function Blog() {
       </div> */}
       <div className="blog-cards-container">
         {
-          blogs.map((value)=>(
-            <div className="blog-card">
+          blogs.map((value,index)=>(
+            <div className="blog-card" key={index}>
               <img src={value.src}/>
               <h1>{value.title}</h1>
               <p>{value.description}</p>

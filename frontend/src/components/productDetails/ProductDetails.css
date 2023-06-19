@@ -21,6 +21,7 @@
 }
 .product-details-more-images>img{
     width: 18%;
+    cursor: pointer;
 }
 
 .product-details-image-section>img{
@@ -79,6 +80,7 @@
     border-style: none;
     border-width: 0px;
     background-color: #f4e8e8;
+    cursor: pointer;
 }
 .product-details-section-quantity-button-container>div{
     padding: 8px 15px 8px 15px;
@@ -104,6 +106,7 @@
     width: 45%;
     font-size: 18px;
     padding: 13px 20px 13px 25px;
+    cursor: pointer;
 }
 .product-details-info-container>h1{
     font-family: 'Source Serif 4', serif;
@@ -119,4 +122,84 @@
     list-style: circle;
     font-family: 'Source Serif 4', serif;
     font-size: 18px;
+}
+.product-details-section-buy-now{
+    background-color: white !important; 
+    color: #372b2b !important;
+    border: solid 1px #372b2b !important;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .product-details-bg-container{
+        padding: 10px;
+    }
+    .product-details-section{
+        display: block;
+    }
+    .product-details-image-section{
+        width: 100%;
+    }
+    .product-details-description-section{
+        width: 100%;
+        padding: 5px;
+    }
+    .product-details-section-heading{
+        font-family: 'Source Serif 4', serif;
+        font-size: 25px;
+        margin-top: 20px;
+    }
+    .product-details-section-discount-card{
+        font-family: 'Source Serif 4', serif;
+        background-color: #613d3c;
+        color: white;
+        padding: 5px 20px 5px 20px;
+        padding-right: 30px;
+        font-size: 12px;
+    }
+    .product-details-section-original-price{
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .product-details-section-discount-price{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .product-details-section-quantity-container{
+        margin: 20px 0px 20px 0px;
+    }
+    .product-details-section-quantiy-heading{
+        font-size: 18px;
+    }
+    .product-details-section-quantity-button-container{
+        display: flex;
+        width: fit-content;
+        margin-top: 10px;
+    }
+    .product-details-section-quantity-button-container>button{
+        padding: 0px 10px 0px 10px;
+        font-size: 15px;
+    }
+    .product-details-section-quantity-button-container>div{
+        padding: 8px 15px 8px 15px;
+        font-size: 14px;
+    }
+    .product-details-section-button-container{
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .product-details-section-button-container>button{
+        width: 100%;
+        font-size: 15px;
+        padding: 13px 20px 13px 25px;
+    }
+    .product-details-info-container>h1{
+        font-size: 23px;
+        font-weight: 600;
+    }
+    .product-details-list>li{
+        margin: 10px 0px 0px 40px;
+        font-size: 15px;
+    }
 }

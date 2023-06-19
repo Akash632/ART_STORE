@@ -4,18 +4,29 @@
     align-items: center;
     padding: 20px;
     background-color: white;
+    /* background-color: #253e50; */
+    /* background-color: #233b55; */
 }
 .navbar-logo{
     display: flex;
     font-family: 'Satisfy', cursive;
     align-items: center;
     color: #372b28;
+    /* font-family: Raleway; */
+    /* font-weight: 300; */
+    /* color: white; */
+    cursor: pointer;
 }
+/* .navbar-logo h1{
+    font-size: 20px;
+    font-weight: 600;
+} */
 .navbar-top-section{
     background-color: #372b28;
     color: white;
     padding: 10px;
-    font-family: 'Source Serif 4', serif;
+    /* font-family: 'Source Serif 4', serif; */
+    font-family: Raleway;
     text-align: center;
 }
 .navbar-logo>img{
@@ -25,13 +36,16 @@
     display: flex;
     width: 45%;
     justify-content: space-evenly;
+    /* font-family: Raleway; */
     font-family: Roboto;
     font-size: 20px;
-    color: #372b28;
+    /* color: #372b28; */
+    color: white;
     cursor: pointer;
 }
 .navbar-options-button{
     color: #372b28;
+    /* color: white; */
     text-decoration: none;
 }
 .navbar-icons{
@@ -46,9 +60,37 @@
 .navbar-icons-small{
     display: none;
 }
+.navbar-top-section{
+    display: none;
+}
 @media screen and (min-width:320px) and (max-width:576px){
     .navbar-options{
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        justify-content: start;
+        align-items: start;
+        position: absolute;
+        top: 9%;
+        left: -100%;
+        z-index: 1;
+        background-color:white;
+        padding: 10px;
+        transition: 0.3s;
+        /* box-shadow: 15px 80px 60px #888888; */
+    }
+    /* .navbar-bg-small{
+        display: block;
+    }
+    .navbar-bg{
         display: none;
+    } */
+    .nav-options-active{
+        left:0%;
+    }
+    .navbar-options-button{
+        margin: 20px;
     }
     .navbar-logo>img{
         width: 35px;
@@ -68,8 +110,29 @@
         align-items: center;
         width: 20%;
     }
+    .navbar-top-section{
+        font-size: 12px;
+    }
 }
 @media screen and (min-width:577px) and (max-width:769px) {
+    .navbar-options{
+        flex-direction: column;
+        width: 80%;
+        height: 100vh;
+        justify-content: start;
+        align-items: start;
+        position: absolute;
+        top: 22%;
+        left: -100%;
+        z-index: 1;
+        background-color:white;
+        padding: 10px;
+        transition: 0.3s;
+        box-shadow: 10px 10px 100px #888888;
+    }
+    .nav-options-active{
+        left:0%;
+    }
     .navbar-logo>img{
         width: 45px;
     }

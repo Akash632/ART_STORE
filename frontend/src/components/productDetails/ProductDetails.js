@@ -1,49 +1,55 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
+import { UserContext } from "../../context/context";
+import { disableScroll,enableScroll } from "../../functions/functions";
 
 function ProductDetails() {
+  const {navStatus,setNavStatus}=useContext(UserContext);
+  if(navStatus){
+    disableScroll()
+  }else{
+    enableScroll();
+  }
   const params = useParams();
   const [data, setData] = useState();
-
-  console.log(params.id);
+  const [quantity,setQuantity] = useState(1);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5001/products/${params.id}`)
-      .then((response) => setData(response.data))
+      .get(`http://localhost:5000/shop/${params.id}`)
+      .then((response) => setData(response.data.details))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <div className="product-details-bg-container">
-      {data ? (
-        data.map((value) => (
+      {data ? 
           <div className="product-details-section">
             <div className="product-details-image-section">
               <div className="product-details-main-image">
-              <img src={value.image_src} />
+              <img src={data.image_src} />
               </div>
               <div className="product-details-more-images">
-                {value.related_images.map((images)=>(
+                {data.related_images.map((images)=>(
                   <img src={images}/>
                 ))}
               </div>
             </div>
             <div className="product-details-description-section">
-              <h1 className="product-details-section-heading">{value.title}</h1>
+              <h1 className="product-details-section-heading">{data.title}</h1>
               <div className="product-details-discount-container">
                 <span className="product-details-section-discount-card">
-                  {value.discount}
+                  {data.discount}
                 </span>
               </div>
               <div className="product-details-price-container">
                 <span className="product-details-section-original-price">
-                  {value.original_price}
+                  {data.original_price}
                 </span>
                 <span className="product-details-section-discount-price">
-                  {value.discount_price}
+                  {data.discount_price}
                 </span>
               </div>
               <div className="product-details-section-quantity-container">
@@ -51,31 +57,29 @@ function ProductDetails() {
                   Quantity
                 </h1>
                 <div className="product-details-section-quantity-button-container">
-                  <button>-</button>
-                  <div>1</div>
-                  <button>+</button>
+                  {quantity<=1?<button onClick={()=>setQuantity(quantity-1)} disabled>-</button>:<button onClick={()=>setQuantity(quantity-1)}>-</button>}
+                  <div>{quantity}</div>
+                  <button onClick={()=>setQuantity(quantity+1)}>+</button>
                 </div>
               </div>
               <div className="product-details-section-button-container">
                 <button className="product-details-section-btn">
                   Add to cart
                 </button>
-                <button className="product-details-section-btn">Buy now</button>
+                <button className="product-details-section-buy-now">Buy now</button>
               </div>
               <div className="product-details-info-container">
                 <h1>Product Info</h1>
                 <ul className="product-details-list">
-                  {value.product_info.map((data) => (
-                    <li>{data}</li>
+                  {data.product_info.map((value) => (
+                    <li>{value}</li>
                   ))}
                 </ul>
               </div>
             </div>
-          </div>
-        ))
-      ) : (
+          </div> : 
         <h1>LOADING</h1>
-      )}
+      }
     </div>
   );
 }

@@ -1,10 +1,18 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./Contact.css";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
+import { UserContext } from "../../context/context";
+import { disableScroll,enableScroll } from "../../functions/functions";
 
 function Contact() {
+  const {navStatus,setNavStatus}=useContext(UserContext);
+  if(navStatus){
+    disableScroll()
+  }else{
+    enableScroll();
+  }
   return (
     <div>
       <div className="contact-poster-container">

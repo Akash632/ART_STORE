@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './LatestBlog.css';
 import {useNavigate} from 'react-router-dom';
 
 function LatestBlog() {
+
 
   const navigate = useNavigate();
     const latestBlogs=[
@@ -29,8 +30,8 @@ function LatestBlog() {
         <h1>Our Latest Blogs</h1>
       </div>
       <div className='latest-blog-image-container'>
-        {latestBlogs.map((value)=>(
-            <div className='latest-blog-images'>
+        {latestBlogs.map((value,index)=>(
+            <div className='latest-blog-images' key={index}>
                 <img src={value.src}/>
                 <h1>{value.title}</h1>
                 <p>{value.description}</p>

@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import react from 'react';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 
@@ -15,6 +15,8 @@ import Blog from './components/blog/Blog';
 import Contact from './components/contact/Contact';
 import Comission from './components/comission/Comission';
 import ProductDetails from './components/productDetails/ProductDetails';
+import Motion from './animations/Motion';
+import Login from './components/login/Login';
 
 
 function App() {
@@ -23,12 +25,14 @@ function App() {
       <BrowserRouter>
       <Navbar/>
       <Routes>
-        <Route exact path ="/home" element={<Home/>}/>
+        <Route exact path ="/" element={<Home/>}/>
         <Route exact path="/shop" element={<Shop/>}/>
         <Route exact path="/blog" element={<Blog/>}/>
         <Route exact path="/contact" element={<Contact/>}/>
         <Route exact path="/comissions" element={<Comission/>}/>
         <Route exact path="/:value/:id" element={<ProductDetails/>}/>
+        {/* <Route exact path="/motion" element={<Motion/>}/> */}
+        <Route exact path="/login" element={<Login/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>

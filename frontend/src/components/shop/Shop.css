@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 20px;
+    overflow-y: hidden;
 }
 .shop-image-container-bg{
     width: 23%;

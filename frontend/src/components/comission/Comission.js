@@ -1,8 +1,24 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./Comission.css";
-
+import { UserContext } from "../../context/context";
+import { disableScroll,enableScroll } from "../../functions/functions";
+import { motion,AnimatePresence } from "framer-motion";
 function Comission() {
+  const {navStatus,setNavStatus}=useContext(UserContext);
+
+  if(navStatus){
+    disableScroll()
+  }else{
+    enableScroll();
+  }
+
   return (
+    <AnimatePresence>
+    <motion.div       
+    inital={{opacity:0}}
+    animate={{opacity:1}}
+    exit={{opacity:0}}
+    transition={{duration:5}}>
     <div>
       <div className="comission-page-heading-container">
         <img src="https://cdn.shopify.com/s/files/1/0716/7367/6072/files/1500-300.png?v=1676004063"/>
@@ -62,6 +78,8 @@ function Comission() {
         </div>
       </div>
     </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
 
