@@ -1,6 +1,6 @@
 const userModel = require("../Model/userModel.js");
 const { hashPassword, comparePassword } = require("../Helpers/authHelper.js");
-
+const jwt = require('jsonwebtoken');
 
 const registerController = async (req, res) => {
   try {
@@ -82,6 +82,10 @@ const loginController = async (req, res) => {
       });
     }
 
+    console.log(process.env.JWT_SECRET)
+    //token
+    const token = await jwt.sign({_id:user.id},process.env.JWT_SECRET,{expiresIn:'7d'});
+
     res.status(200).send({
       success: true,
       message: "login successful",
@@ -90,14 +94,16 @@ const loginController = async (req, res) => {
         email: user.email,
         phone:user.phone,
         address:user.address
-      }
+      },
+      token
     });
   } 
   catch (err) {
+    console.log(err);
     res.status(500).send({
       success: false,
       message: "it's not you. its's us",
-      error:err
+      err
     });
   }
 };

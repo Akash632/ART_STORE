@@ -1,18 +1,46 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import "./Contact.css";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import { UserContext } from "../../context/context";
 import { disableScroll,enableScroll } from "../../functions/functions";
+import axios from 'axios';
+
 
 function Contact() {
+  const [data,setData]=useState({name:"",phone:"",email:"",comment:""});
+  const [value,setValue]=useState("");
   const {navStatus,setNavStatus}=useContext(UserContext);
+
   if(navStatus){
     disableScroll()
   }else{
     enableScroll();
   }
+
+  const handleData = (e)=>{
+    setData((prevState)=>{
+      return {
+        ...prevState,[e.target.name]:e.target.value,
+      }
+    })
+  }
+
+const postData = async ()=>{
+  let res = await axios.post('http://localhost:5000/contact',{
+    name:data.name,
+    phone:data.phone,
+    email:data.email,
+    comment:data.comment
+  })
+  if(res.data.success){
+    console.log(res.data.message);
+  }
+  else{
+    console.log(res.data.message);
+  }
+}
   return (
     <div>
       <div className="contact-poster-container">
@@ -57,12 +85,14 @@ function Contact() {
               placeholder="Name"
               name="name"
               className="form-name"
+              onChange={(e)=>handleData(e)}
             />
             <input
               type="text"
               placeholder="Phone"
               name="phone"
               className="form-phone"
+              onChange={(e)=>handleData(e)}
             />
           </div>
           <div className="form-email-container">
@@ -71,16 +101,18 @@ function Contact() {
               placeholder="Email"
               name="email"
               className="form-email"
-            />{" "}
+              onChange={(e)=>handleData(e)}
+            />
           </div>
             <textarea
               placeholder="Comment"
               name="comment"
               className="form-comment"
               rows="5" cols="10"
+              onChange={(e)=>handleData(e)}
             ></textarea>
           </div>
-          <button className="contact-card-button">Send</button>
+          <button className="contact-card-button" onClick={postData}>Send</button>
         </div>
       </div>
     </div>

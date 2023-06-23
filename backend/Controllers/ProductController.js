@@ -1,9 +1,6 @@
 const productModel = require('../Model/productsModel.js');
 
-// console.log(productModel);
 const getProductController = async (req,res)=>{
-    // const {title,original_price,discount_price,dicount,image_src,product_info,related_images} = req.body;
-
     try{
     const products = await productModel.find({});
     res.status(200).send({

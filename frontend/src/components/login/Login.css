@@ -72,3 +72,102 @@
     height: 150px;
     text-align: center;
 }
+.login-button:hover{
+    background-color: #9d7a7a;
+}
+.login-text-container p span:hover{
+    color:#9d7a7a;
+}
+@media screen and (min-width:320px) and (max-width:576px){
+    .login-main-container{
+        padding: 10px;
+    }
+    .login-card-container{
+        width: 100%;
+    }
+    .login-heading-container h1{
+        font-size: 25px;
+    }
+    .login-header-container{
+        display: none;
+    }
+    .login-heading-container{
+        margin: 0px 0px 20px 0px;
+    }
+    .login-input-container{
+        width: 100%;
+    }
+    .login-input-container input{
+        font-size: 15px;
+        padding: 5px;
+        margin: 0px 0px 15px 0px;
+        height: 45px;
+    }
+    .login-button-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: start;
+        align-items: start;
+        margin: 0px 0px 20px 0px;
+    }
+    .login-button{
+        font-size: 15px;
+        letter-spacing: 2px
+    }
+    .login-text-container{
+        margin: 10px 0px 0px 0px;
+    }
+    .login-text-container p{
+        font-size: 12px;
+    } 
+}
+@media screen and (min-width:577px) and (max-width:769px){
+    .login-main-container{
+        padding: 20px;
+        border: solid 1px black;
+    }
+    .login-card-container{
+        width: 100%;
+    }
+    .login-heading-container h1{
+        font-size: 30px;
+    }
+    .login-header-container{
+        display: none;
+    }
+    .login-heading-container{
+        margin: 0px 0px 20px 0px;
+    }
+    .login-input-container{
+        width: 100%;
+    } 
+    .login-input-container input{
+        font-size: 15px;
+        padding: 5px;
+        margin: 0px 0px 15px 0px;
+        height: 45px;
+    }
+    .login-button-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 0px 20px 0px;
+    }
+    .login-button{
+        font-size: 15px;
+        letter-spacing: 2px
+    }
+    .login-text-container p{
+        font-size: 15px;
+    } 
+}
+@media screen and (min-width:769px) and (max-width:1025px){
+    .login-main-container{
+        padding: 50px;
+        border: solid 1px black;
+    }
+    .login-card-container{
+        width: 100%;
+    }
+}

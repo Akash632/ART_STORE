@@ -17,6 +17,7 @@ import Comission from './components/comission/Comission';
 import ProductDetails from './components/productDetails/ProductDetails';
 import Motion from './animations/Motion';
 import Login from './components/login/Login';
+import Cart from './components/cart/Cart';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/:value/:id" element={<ProductDetails/>}/>
         {/* <Route exact path="/motion" element={<Motion/>}/> */}
         <Route exact path="/login" element={<Login/>}/>
+        <Route exact path="/cart" element={<Cart/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>

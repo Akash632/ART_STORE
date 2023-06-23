@@ -65,7 +65,7 @@ const handleNav=()=>{
         </Link>
       </div>
             <div className="navbar-icons">
-        <div className="navbar-icon-container">
+        <div className="navbar-icon-container" onClick={()=>navigate("/cart")}>
           <ShoppingBasketOutlinedIcon style={styles}/>
         </div>
         <Link to='/login'>

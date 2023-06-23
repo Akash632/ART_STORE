@@ -8,23 +8,21 @@ import { UserContext } from "../../context/context";
 function Login() {
   const navigate = useNavigate();
   const [user,setUser] = useState(false);
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  const [phone,setPhone] = useState("");
-  const [address,setAddress] = useState("");
-  // const [dataStatus,setDataStatus] = useState();
+  const [loginData,setLoginData]= useState({email:'',password:''});
+  const [signUp, setSignUp] = useState({name:'',email:'',password:'',phone:'',address:''});
   const {auth,setAuth} = useContext(UserContext);
 
   const handleSignUp = async ()=>{
     const res = await axios.post('http://localhost:5000/register',{
-      name,email,password,phone,address
+      name:signUp.name,
+      email:signUp.email,
+      password:signUp.password,
+      phone:signUp.phone,
+      address:signUp.address
     })
-    // setDataStatus(res.data.success);
     if(res.data.success){
       localStorage.setItem('auth',JSON.stringify(res.data.user));
       console.log(localStorage.getItem('auth'));
-      // setAuth(localStorage.getItem('auth'));
       navigate('/');
     }
     else{
@@ -32,10 +30,13 @@ function Login() {
     }
   }
 
+
   const handleLogin = async()=>{
     const res = await axios.post('http://localhost:5000/login',{
-      email,password
+      email:loginData.email,
+      password:loginData.password
     })
+    console.log(res);
     if(res.data.success){
       localStorage.setItem('auth',JSON.stringify(res.data.user));
       navigate('/');
@@ -44,6 +45,23 @@ function Login() {
       document.getElementById("login-warning-message").innerHTML=res.data.message;
     }
   }
+
+  const handleLoginInputs = (e)=>{
+    setLoginData((prevState)=>{
+      return {
+        ...prevState,[e.target.name]:e.target.value,
+      }
+    })
+  }
+
+  const handleSigUpInputs = (e)=>{
+    setSignUp((prevState)=>{
+      return{
+        ...prevState,[e.target.name]:e.target.value,
+      }
+    })
+  }
+
 
   // console.log(`login status ${dataStatus}`);
   // useEffect(()=>{
@@ -66,11 +84,11 @@ function Login() {
                 <p id="register-warning-message" style={{color:"red"}}></p>
               </div>
               <div className="login-input-container">
-                <input type="text" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)}/>
-                <input type="text" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-                <input type="text" placeholder="Phone" value={phone} onChange={(e)=>setPhone(e.target.value)}/>
-                <input type="text" placeholder="Address" value={address} onChange={(e)=>setAddress(e.target.value)}/>
+                <input type="text" placeholder="Name" name="name" onChange={(e)=>handleSigUpInputs(e)}/>
+                <input type="text" placeholder="Email" name="email" onChange={(e)=>handleSigUpInputs(e)}/>
+                <input type="password" placeholder="Password"  name="password" onChange={(e)=>handleSigUpInputs(e)}/>
+                <input type="text" placeholder="Phone" name="phone" onChange={(e)=>handleSigUpInputs(e)}/>
+                <input type="text" placeholder="Address"  name="address" onChange={(e)=>handleSigUpInputs(e)}/>
               </div>
               <div className="login-button-container">
                 <div className="login-text-container">
@@ -93,8 +111,8 @@ function Login() {
                 <p id="login-warning-message" style={{color:"red"}}></p>
               </div>
               <div className="login-input-container">
-                <input type="text" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <input type="text" placeholder="Email" name="email" onChange={(e)=>handleLoginInputs(e)}/>
+                <input type="password" placeholder="Password" name="password" onChange={(e)=>handleLoginInputs(e)}/>
               </div>
               <div className="login-button-container">
                 <div className="login-text-container">

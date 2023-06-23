@@ -1,9 +1,13 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import "./Comission.css";
 import { UserContext } from "../../context/context";
 import { disableScroll,enableScroll } from "../../functions/functions";
 import { motion,AnimatePresence } from "framer-motion";
+import axios from "axios";
+
+
 function Comission() {
+  const [data,setData] = useState({name:"",phone:"",email:"",requirements:""});
   const {navStatus,setNavStatus}=useContext(UserContext);
 
   if(navStatus){
@@ -12,6 +16,28 @@ function Comission() {
     enableScroll();
   }
 
+  const handleData = (e)=>{
+    setData((prevState)=>{
+      return {
+        ...prevState,[e.target.name]:e.target.value,
+      }
+    })
+  }
+
+  const handleSubmit= async ()=>{
+    let res = await axios.post('http://localhost:5000/comissions',{
+      name:data.name,
+      phone:data.phone,
+      email:data.email,
+      requirements:data.requirements
+    })
+    if(res.data.success){
+      console.log(res.data.message);
+    }
+    else{
+      console.log(res.data.message);
+    }
+  }
   return (
     <AnimatePresence>
     <motion.div       
@@ -46,11 +72,15 @@ function Comission() {
                   type="text"
                   placeholder="Name"
                   className="comission-form-name"
+                  name="name"
+                  onChange={e=>handleData(e)}
                 />
                 <input
                   type="text"
                   placeholder="Phone"
                   className="comission-form-phone"
+                  name="phone"
+                  onChange={e=>handleData(e)}
                 />
               </div>
               <div className="comission-form-email-container">
@@ -58,6 +88,8 @@ function Comission() {
                   type="text"
                   placeholder="Email"
                   className="comission-form-email"
+                  name="email"
+                  onChange={e=>handleData(e)}
                 />
               </div>
               <div className="comission-form-comment-container">
@@ -65,10 +97,12 @@ function Comission() {
                 rows="10"
                   placeholder="Requirements"
                   className="comission-form-comment"
+                  name="requirements"
+                  onChange={e=>handleData(e)}
                 ></textarea>
               </div>
               <div>
-              <button className="comission-button">Send</button>
+              <button className="comission-button" onClick={handleSubmit}>Send</button>
               </div>
             </div>
           </div>
