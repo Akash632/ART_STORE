@@ -1,8 +1,11 @@
 .carousal-bg-container{
     position: relative;
+    height: 700px;
 }
 .carousal-image{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .carousal-btn-container{
     display: flex;
@@ -14,24 +17,35 @@
 }
 .carousal-btn-container>button{
     color: white;
-    background-color: #372b28;
+    background-color: transparent;
     border: none;
     box-sizing: border-box;
     padding: 10px;
+    cursor: pointer;
 }
 .carousal-btn-container-small{
     display: none;
 }
+.carousal-btn-container>button:hover{
+    border: solid 1px white;
+}
 @media screen and (min-width:320px) and (max-width:576px){
+    .carousal-bg-container{
+        height: 200px;
+    }
     .carousal-btn-container{
-        display: none;
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 100%;
+        width: 99%;
+        left: 0.5%;
     }
     .carousal-btn-container{
         top:25%
     }
     .carousal-btn-container-small{
-        display: block;
-        display: flex;
+        display: none;
         justify-content: space-between;
         position: absolute;
         top: 50%;
@@ -45,6 +59,9 @@
     }
 }
 @media screen and (min-width:577px) and (max-width:769px){
+    .carousal-bg-container{
+        height: 400px;
+    }
     .carousal-btn-container-small{
         display: none;
     }
@@ -58,6 +75,9 @@
     }
 }
 @media screen and (min-width:769px) and (max-width:1025px){
+    .carousal-bg-container{
+        height: 500px;
+    }
     .carousal-btn-container{        
         display: flex;
         justify-content: space-between;

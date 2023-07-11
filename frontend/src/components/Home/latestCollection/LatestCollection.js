@@ -5,7 +5,7 @@ function LatestCollection() {
     const latestCollecton =[
         {   
             id:'6480c28f7e6a395c986123c5',
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/products/12.gif?v=1676007161",
+            src:"https://static.wixstatic.com/media/112644_45ae2642bba04a6dbf6830a7b7c9bb33~mv2.jpeg/v1/fill/w_625,h_834,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_45ae2642bba04a6dbf6830a7b7c9bb33~mv2.jpeg",
             title:"Classic Door",
             original_price:"Rs.3,700",
             discount_price:"Rs.3,522",
@@ -13,7 +13,7 @@ function LatestCollection() {
         },
         {   
             id:"6480c28f7e6a395c986123c6",
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/products/10.gif?v=1676007068",
+            src:"https://static.wixstatic.com/media/112644_366a17440b644e979372726f56ca4c37~mv2.jpeg/v1/fill/w_625,h_834,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_366a17440b644e979372726f56ca4c37~mv2.jpeg",
             title:"Sun Flower",
             original_price:"Rs.2,400",
             discount_price:"Rs.1,930",
@@ -21,7 +21,7 @@ function LatestCollection() {
         },
         {   
             id:"6480c28f7e6a395c986123c7",
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/products/01_a32ab651-5427-4f40-ad0f-e95182c446a7.gif?v=1676007120",
+            src:"https://static.wixstatic.com/media/112644_5ebdb85063b64f94b746b31c768b5435~mv2.jpeg/v1/fill/w_625,h_834,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_5ebdb85063b64f94b746b31c768b5435~mv2.jpeg",
             title:"Jungle Art",
             original_price:"Rs.3,700",
             discount_price:"Rs.3,522",
@@ -29,7 +29,7 @@ function LatestCollection() {
         },
         {   
             id:"6480c28f7e6a395c986123c8",
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/products/09.gif?v=1676005190",
+            src:"https://static.wixstatic.com/media/112644_13ff2c4e3f4b4fe3a00e45a70b54c7e1~mv2.jpeg/v1/fill/w_625,h_834,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_13ff2c4e3f4b4fe3a00e45a70b54c7e1~mv2.jpeg",
             title:"Nature Brush",
             original_price:"Rs.2,100",
             discount_price:"Rs.1,870",
@@ -44,7 +44,7 @@ function LatestCollection() {
       </div>
       <div className='latest-collection-image-bg'>
         {latestCollecton.map((value,index)=>(
-            <div key={index} className='latest-collection-image-container' onClick={()=>navigate(`${value.id}`)}>
+            <div key={index} className='latest-collection-image-container' onClick={()=>navigate(`/shop/${value.id}`)}>
                 <div className='latest-card-container'>
                     <img src={value.src} className='latest-collection-image'/>
                     <div className='latest-offer-card'>

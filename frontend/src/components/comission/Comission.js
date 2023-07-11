@@ -4,11 +4,13 @@ import { UserContext } from "../../context/context";
 import { disableScroll,enableScroll } from "../../functions/functions";
 import { motion,AnimatePresence } from "framer-motion";
 import axios from "axios";
+import { useAuth } from "../../context/auth";
 
 
 function Comission() {
   const [data,setData] = useState({name:"",phone:"",email:"",requirements:""});
   const {navStatus,setNavStatus}=useContext(UserContext);
+  // const [navStatus,setNavStatus]=useAuth();
 
   if(navStatus){
     disableScroll()

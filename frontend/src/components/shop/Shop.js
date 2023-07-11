@@ -1,90 +1,163 @@
-import React, { useState,useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Shop.css";
 import axios from "axios";
 import ProductDetails from "../productDetails/ProductDetails";
-import { useNavigate , useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { disableScroll, enableScroll } from "../../functions/functions";
+import { useAuth } from "../../context/auth";
 import { UserContext } from "../../context/context";
-import { disableScroll,enableScroll } from "../../functions/functions";
+import prices from '../../filters/price.js';
 
 function Shop() {
-  const {navStatus,setNavStatus}=useContext(UserContext);
-
-  if(navStatus){
-    disableScroll()
-  }else{
-    enableScroll();
-  }
-
+  const { navStatus, setNavStatus } = useContext(UserContext);
   const [shopItems, setShopItems] = useState();
+  const [checked,setChecked] = useState([]);
+  const [radio,setRadio] = useState([]);
 
   const navigate = useNavigate();
   const params = useParams();
 
-  const [id,setId] = useState();
-
-
-  useEffect(()=>{
-    axios.get('http://localhost:5000/shop')
-    .then((response)=>setShopItems(response.data.products))
-    // .then((response)=>console.log(response.data.products))
-    .catch((err)=>console.log(err));
-  },[]);
+  const [id, setId] = useState();
+  const [categories,setCategories]=useState();
 
   const shopItemsLength = shopItems && shopItems.length;
 
-  const [pageCount, setPageCount] = useState(8);
+  const [pageCount, setPageCount] = useState(9);
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(shopItemsLength / pageCount);
 
-  const myArray = shopItemsLength&&[...Array(totalPages + 1).keys()].slice(1);
+  const myArray = shopItemsLength && [...Array(totalPages + 1).keys()].slice(1);
 
   const lastIndex = currentPage * pageCount;
   const firstIndex = lastIndex - pageCount;
 
-  useEffect(()=>{
-    window.scrollTo(0,0)
-  },[currentPage])
+  if (navStatus) {
+    disableScroll();
+  } else {
+    enableScroll();
+  }
 
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/v1/products/getproducts")
+      .then((response) => setShopItems(response.data.products))
+      // .then((response)=>console.log(response.data.products))
+      .catch((err) => console.log(err));
+
+      axios.get('http://localhost:5000/api/v1/category/get-categories')
+      .then((response)=>setCategories(response.data.categories))
+      .catch((err)=>console.log(err));
+  }, []);
+
+  useEffect(()=>{
+    axios.post("http://localhost:5000/api/v1/products//getProductsByCategory",{checked})
+    .then((response)=>console.log(response))
+    .catch(err=>console.log(err));
+  },[checked])
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  const handleCategories = (item,id)=>{
+    let all=[...checked];
+    if(item){
+      all.push(id);
+    }else{
+      all=all.filter((c)=>c!==id);
+    }
+    setChecked(all);
+  }
+
+  const handleRadio = (e)=>{
+    if(e.target.checked){
+      let newValues = e.target.value.split(",");
+      if(radio.length===0){
+        radio.push(newValues);
+      }else{
+        radio.splice(0,1,newValues);
+      }
+      console.log(radio);
+    }
+  }
   return (
-    <>
+    <div className="shop-page-root-container">
+    <div className="shop-page-main-container">
+    <div className="shop-filter-container">
+          <h1>Shop by Collection</h1>
+    <div>
+      {categories&&categories.map((item)=>(
+        <div key={item._id}>
+        <input type="checkbox" value={item._id} id="category-checkbox" onChange={(e)=>handleCategories(e.target.checked,e.target.value)}/>
+        <label htmlFor="category-checkbox">{item.name}</label><br/>
+        </div>
+      ))}
+      <div>
+        <h1>Filter by Amount</h1>
+        <div>
+        {prices.map((item)=>(
+        <div key={item._id} onChange={(e)=>handleRadio(e)}>
+        <input type="radio" value={item.array} id="category-checkbox" name="radio"/>
+        <label htmlFor="category-checkbox">{item.name}</label><br/>
+        </div>
+      ))}
+        </div>
+      </div>
+    </div>
+    </div>  
+    <div className="shop-container-main">
       <div className="shop-container-bg">
-        {shopItems && shopItems.slice(firstIndex,lastIndex).map((value, index) => (
-          <div className="shop-image-container-bg" key={index} onClick={()=>navigate(`/shop/${value._id}`)}>
-            <div className="shop-image-container">
-              <img src={value.image_src} />
-              <div className="shop-offer-container">
-                <span>{value.discount}</span>
+        {shopItems &&
+          shopItems.slice(firstIndex, lastIndex).map((value, index) => (
+            <div
+              className="shop-image-container-bg"
+              key={index}
+              onClick={() => navigate(`/shop/${value._id}`)}
+            >
+              <div className="shop-image-container">
+                <img src={value.image_src} />
+                {value.discount && (
+                  <div className="shop-offer-container">
+                    <span>{value.discount}</span>
+                  </div>
+                )}
+              </div>
+              <div className="shop-card-text-container">
+                <h1>{value.title}</h1>
+                <div className="shop-card-price-container">
+                  <span className="shop-card-original-price">
+                    {value.original_price}
+                  </span>
+                  {value.discount_price && (
+                    <span className="shop-card-discount-price">
+                      {value.discount_price}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-            <div className="shop-card-text-container">
-              <h1>{value.title}</h1>
-              <div className="shop-card-price-container">
-                <span className="shop-card-original-price">
-                  {value.original_price}
-                </span>
-                <span className="shop-card-discount-price">
-                  {value.discount_price}
-                </span>
-              </div>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
       <div className="shop-card-pagination">
         <div>
-          {myArray&&myArray.map((page,index) => (
-            <span
-              onClick={() => setCurrentPage(page)}
-              className="shop-card-pagination-numbers"
-              key={index}
-            >
-              {page}
-            </span>
-          ))}
+          {myArray &&
+            myArray.map((page, index) => (
+              <span
+                onClick={() => setCurrentPage(page)}
+                className="shop-card-pagination-numbers"
+                key={index}
+              >
+                {page}
+              </span>
+            ))}
         </div>
       </div>
-    </>
+      </div>
+    </div>
+    </div>
   );
 }
 

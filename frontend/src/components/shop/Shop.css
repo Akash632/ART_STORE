@@ -4,9 +4,10 @@
     justify-content: space-around;
     padding: 20px;
     overflow-y: hidden;
+    width: 100%;
 }
 .shop-image-container-bg{
-    width: 23%;
+    width: 30%;
     margin-bottom: 40px;
     cursor: pointer;
 }
@@ -30,10 +31,28 @@
     font-size: 12px;
 }
 .shop-card-text-container{
-    font-family: 'Source Serif 4', serif;
-    color: #372b28;
     box-sizing: border-box;
     padding: 10px;
+}
+.shop-card-text-container>h1{
+    font-family: 'Bacasime Antique', serif;
+    color: #021a4a;
+}
+.shop-filter-container{
+    border: solid 1px black;
+    width: 20%;
+}
+.shop-page-main-container{
+    border: solid 1px black;
+    display: flex;
+}
+.shop-container-main{
+    width: 80%;
+    border: solid 1px black;
+}
+.shop-page-root-container{
+    border: solid 1px red;
+    padding: 15px;
 }
 .shop-card-text-container>h1{
     font-size: 20px;

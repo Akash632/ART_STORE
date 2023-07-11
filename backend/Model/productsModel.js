@@ -1,13 +1,5 @@
 const mongoose = require("mongoose");
 
-// const productS = mongoose.Schema({
-//     title:String,
-//     original_price:String,
-//     discount_price:String,
-//     discount:String,
-//     image_src:String
-// });
-
 const productModel = new mongoose.Schema({
   title: {
     type: String,
@@ -22,12 +14,10 @@ const productModel = new mongoose.Schema({
   discount_price: {
     type: String,
     trim: true,
-    require: true,
   },
   discount: {
     type: String,
     trim: true,
-    require: true,
   },
   image_src: {
     type: String,
@@ -42,8 +32,21 @@ const productModel = new mongoose.Schema({
   related_images: {
     type: Array,
     trim: true,
-    require: true,
   },
+  quantity:{
+    type:Number,
+    require: true,
+    default:1
+  },
+  category:{
+    type:mongoose.ObjectId,
+    ref:'categories',
+    require:true,
+  },
+  product_status:{
+    type:String,
+    default:true,
+  }
 });
 
 // module.exports = productSchema;

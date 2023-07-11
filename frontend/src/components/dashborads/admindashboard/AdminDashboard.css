@@ -1,0 +1,46 @@
+.admin-heading-container{
+    background-color: #f4e8e8;
+    height: 200px;
+}
+.admin-dashboard-main-container{
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.admin-dashboard-menu-container{
+    width: 20%;
+    /* border: solid 1px black; */
+}
+.admin-dashboard-menu-main-container{
+    width: 100%;
+    padding: 20px;
+    background-color: #f4e8e8;
+}
+.admin-dashboard-menu-main-container h1{
+    font-family: 'Source Serif 4', serif;
+    color: #372b2b;
+    text-align: center;
+}
+.admin-dashboard-menu-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+}
+.admin-menu-btn{
+    width: 100%;
+    font-family: 'Source Serif 4', serif;
+    background-color: #372b2b;
+    color: white;
+    border-style: none;
+    font-size: 18px;
+    padding: 13px 20px 13px 25px;
+    cursor: pointer;
+}
+.admin-dashboard-content-container{
+    border: solid 1px black;
+    width: 70%;
+}
+.create-category-heading-container{
+    border: solid 1px black;
+}

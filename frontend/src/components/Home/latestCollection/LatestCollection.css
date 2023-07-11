@@ -5,34 +5,37 @@
     align-items: center;
     box-sizing: border-box;
     padding: 20px;
-    /* background: rgba(49,49,49,0.8); */
     cursor: pointer;
+    margin: 20px 0px 30px 0px;
 }
 .latest-collection-heading>h1{
     font-family: 'Source Serif 4', serif;
     font-size: 40px;
     font-weight: 400;
+    letter-spacing: 2px;
 }
 .latest-collection-heading{
-    margin-top:20px;
-    margin-bottom: 20px;
+    margin: 5px 0px 30px 0px;
 }
 .latest-collection-image-bg{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 100%;
 }
 .latest-collection-image-container{
     width: 20%;
 }
 .latest-card-container{
     position: relative;
+    /* width: 100%; */
+    height: 320px;
 }
 .latest-offer-card{
     position: absolute;
     top: 0%;
     font-family: 'Source Serif 4', serif;
-    background-color: #613d3c;
+    background-color: #021a4a;
     color: white;
     box-sizing: border-box;
     padding: 5px;
@@ -42,15 +45,20 @@
 }
 .latest-collection-image{
     width:100%;
+    height: 100%;
+    object-fit: cover;
 }
 .latest-collection-text{
-    font-family: 'Source Serif 4', serif;
-    color: #372b28;
+    font-family: 'Quicksand', sans-serif;
+    color: #021a4a;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
+    font-weight: 200;
+    letter-spacing: 1px;
 }
 .latest-collection-text>h1{
-    font-size: 20px;
+    font-size: 25px;
+    font-family: 'Bacasime Antique', serif;
 }
 .latest-collection-original-price{
     color: #8a8a8a;
@@ -58,11 +66,23 @@
     margin-right: 10px;
 }
 .latest-collection-price{  
-    color:#372b28;
+    color: #021a4a;
     text-decoration: none;
     font-weight: 700;
 }
+.latest-price-container{
+    margin: 10px 0px 0px 0px;
+    font-size: 20px;
+}
 @media screen and (min-width:320px) and (max-width:576px){
+    .latest-price-container{
+        margin: 10px 0px 0px 0px;
+        font-size: 17px;
+    }
+    .latest-collection-text>h1{
+        font-size: 25px;
+        font-family: 'Bacasime Antique', serif;
+    }
     .latest-collection-heading>h1{
         font-size: 25px;
         font-weight: bold;
@@ -70,14 +90,15 @@
     .latest-offer-card{
         position: absolute;
         top: 0%;
-        font-family: 'Source Serif 4', serif;
-        background-color: #613d3c;
+        font-family: 'Quicksand', sans-serif;
+        background-color: #021a4a;
         color: white;
         box-sizing: border-box;
         padding: 3px;
     }
     .latest-collection-image-container{
         width: 100%;
+        margin: 0px 0px 10px 0px;
     }
     .latest-collection-image{
         width: 100%;

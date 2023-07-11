@@ -1,0 +1,19 @@
+.goto-btn-container{
+    display: flex;
+    justify-content: end;
+}
+.goto-btn{
+    position: fixed;
+    bottom: 6%;
+    margin: 0px 30px 0px 0px;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border: solid 1px #394a6e;
+    background-color: #394a6e;
+    border-radius: 50%;
+}
+.goto-btn:hover{
+    background-color: transparent;
+    color: #394a6e;
+}

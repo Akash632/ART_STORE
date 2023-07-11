@@ -3,6 +3,7 @@
     display: flex;
     box-sizing: border-box;
     justify-content: space-evenly;
+    margin: 40px 0px 0px 0px;
 }
 .creative-card-content{
     width: 50%;
@@ -12,32 +13,41 @@
     align-items: start;
 }
 .creative-card-content>h1{
-    color: black;
-    font-family: 'Source Serif 4', serif;
+    color: #021a4a;
+    font-family: 'Quicksand', sans-serif;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 20px;
 }
-.creative-card-content>h1>span{
-    font-family: 'Dancing Script', cursive;
+/* .creative-card-content>h1>span{
+    font-family: 'Quicksand', sans-serif;
     font-size: 55px;
     color: #372b28;
-}
+} */
 .creative-image-bg{
-    background-color: #f4e8e8;
-    padding: 20px;
-    width: fit-content;
-    padding-bottom: 50px;
+    /* background-color: #f4e8e8;
+    padding: 20px; */
+    width: 35%;
+    height: 500px;
+}
+.creative-card-bg img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 .creative-card-para{
-    font-family: 'Source Serif 4', serif;
+    /* font-family: 'Source Serif 4', serif; */
+    font-family: 'Quicksand', sans-serif;
+    /* color: #abbcd9; */
+    color: #021a4a;
     font-size: 20px;
     letter-spacing: 1px;
     margin-bottom: 20px;
 }
 .creative-card-button{
     color: white;
-    background-color: #372b28;
+    /* background-color: #372b28; */
+    background-color: #394a6e;
     border-style: none;
     border-width: 0px;
     box-sizing: border-box;
@@ -45,6 +55,13 @@
     font-family: 'Source Serif 4', serif;
     font-size: 15px;
     letter-spacing: 2px;
+    cursor: pointer;
+    border: solid 1px #394a6e;
+}
+.creative-card-button:hover{
+    background-color: transparent;
+    color: #394a6e;
+    border: solid 1px #394a6e;
 }
 .creative-us-img1-small{
     width: 100%;
@@ -59,14 +76,16 @@
         width: 100%;
     }
     .creative-image-bg{
-        padding: 10px;
+        /* padding: 10px; */
         padding-bottom: 20px;
+        width: 100%;
+        height: 350px;
     }
     .creative-card-bg{
-        padding: 20px;
+        padding: 10px;
     }
     .creative-card-content>h1{
-        font-size: 20px;
+        font-size: 30px;
         font-weight: 400;
     }
     .creative-card-content{

@@ -4,16 +4,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import User from "../user/User";
 import { UserContext } from "../../context/context";
+import { useAuth } from "../../context/auth";
 
 function Login() {
   const navigate = useNavigate();
   const [user,setUser] = useState(false);
   const [loginData,setLoginData]= useState({email:'',password:''});
   const [signUp, setSignUp] = useState({name:'',email:'',password:'',phone:'',address:''});
-  const {auth,setAuth} = useContext(UserContext);
+  // const {author,setAuthor} = useContext(UserContext);
+
+  // const[auth,setAuth]=useAuth();
+  const {auth,setAuth}=useContext(UserContext);
 
   const handleSignUp = async ()=>{
-    const res = await axios.post('http://localhost:5000/register',{
+    const res = await axios.post('http://localhost:5000/api/v1/auth/register',{
       name:signUp.name,
       email:signUp.email,
       password:signUp.password,
@@ -21,7 +25,7 @@ function Login() {
       address:signUp.address
     })
     if(res.data.success){
-      localStorage.setItem('auth',JSON.stringify(res.data.user));
+      localStorage.setItem('auth',JSON.stringify(res.data));
       console.log(localStorage.getItem('auth'));
       navigate('/');
     }
@@ -32,14 +36,19 @@ function Login() {
 
 
   const handleLogin = async()=>{
-    const res = await axios.post('http://localhost:5000/login',{
+    const res = await axios.post('http://localhost:5000/api/v1/auth/login',{
       email:loginData.email,
       password:loginData.password
     })
     console.log(res);
     if(res.data.success){
-      localStorage.setItem('auth',JSON.stringify(res.data.user));
+      localStorage.setItem('auth',JSON.stringify(res.data));
       navigate('/');
+      setAuth({
+        ...auth,
+        user:res.data.user,
+        token:res.data.token
+      })
     }
     else{
       document.getElementById("login-warning-message").innerHTML=res.data.message;
@@ -68,14 +77,16 @@ function Login() {
   //   window.scroll(0,0);
   // },[user])
   
-  useEffect(()=>{
-    setAuth(localStorage.getItem("auth"));
-  },[auth])
+  // useEffect(()=>{
+  //   setAuth(localStorage.getItem("auth"));
+  // },[auth])
+
+  
   return (
     <>
       <div className="login-header-container"></div>
       {
-       auth ? <User/> :   
+       auth.user ? <User/> :   
           user ? (
             <div className="login-main-container">
             <div className="login-card-container">

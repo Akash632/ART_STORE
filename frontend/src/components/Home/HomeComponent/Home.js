@@ -3,19 +3,20 @@ import Category from '../categories/Category';
 import LatestCollection from '../latestCollection/LatestCollection';
 import CreativeCard from '../creativecards/CreativeCard';
 import AboutCard from '../aboutus/AboutCard';
-import LatestBlog from '../latestBlogs/LatestBlog';
 import Carousal from '../carousal/Carousal';
 import { UserContext } from '../../../context/context';
 import { disableScroll,enableScroll } from '../../../functions/functions';
 import './Home.css';
-import Motion from '../../../animations/Motion';
+// import Motion from '../../../animations/Motion';
 import { motion } from "framer-motion";
+// import { useAuth } from '../../../context/auth';
 
 
 function Home() {
 
   const {navStatus,setNavStatus} = useContext(UserContext);
 
+  console.log("nav",navStatus);
   if(navStatus){
     disableScroll();
   }else{
@@ -66,7 +67,6 @@ useEffect(()=>{
       <Category/>
       <CreativeCard/>
       <AboutCard/>
-      {/* <LatestBlog/> */}
     </div>
     </>
     </motion.div>

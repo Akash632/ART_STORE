@@ -1,10 +1,13 @@
 .category-card-bg{
-    background-color: #f4e8e8;
+    /* background-color: #f4e8e8; */
+    /* background-color: #dfe7f2; */
+    background-image: linear-gradient(to right,white,#e7effa);
     display: flex;
     box-sizing: border-box;
     padding: 20px 20px 20px 0px;
     justify-content: space-around;
     width: 100%;
+    cursor: pointer;
 }
 .shop-heading{
     display: flex;
@@ -19,12 +22,14 @@
     flex-wrap: wrap;
 }
 .category-card-images-container>div>img{
-    height: 550px;
+    height: 750px;
     width: 100%;
+    object-fit: cover;
 }
 .shop-heading>h1{
-    color: #c6aead;
+    color: #394a6e;
     font-family: 'Roboto Serif', serif;
+    /* font-family: 'Bacasime Antique', serif; */
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     letter-spacing: 20px;
@@ -40,12 +45,14 @@
 }
 .category-card-button{
     color: white;
-    background-color: #372b28;
+    /* background-color: #372b28; */
+    background-color:#0b2f5b87;
     border-style: none;
     border-width: 0px;
     box-sizing: border-box;
     padding: 15px;
-    font-family: 'Source Serif 4', serif;
+    /* font-family: 'Source Serif 4', serif; */
+    font-family: 'Bacasime Antique', serif;
     font-size: 20px;
     letter-spacing: 2px;
     margin-top: 10px;

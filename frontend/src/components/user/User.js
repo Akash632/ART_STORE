@@ -1,16 +1,19 @@
-import React,{useContext} from 'react';
-import { UserContext } from '../../context/context';
+import { useContext } from "react";
+import UserDashboardMenu from "./UserDashboardMenu";
+import { UserContext } from "../../context/context";
 function User() {
-    const {auth,setAuth} = useContext(UserContext);
-
-    const handleLogOut = () =>{
-        localStorage.removeItem('auth');
-        setAuth(null);
-    }
+  // const [auth,setAuth]=useAuth();
+  const {auth,setAuth} = useContext(UserContext);
   return (
     <div>
-      <h1>Hello user {auth}</h1>
-      <button onClick={handleLogOut}>Logout</button>
+      <div className="admin-dashboard-main-container">
+        <div className="admin-dashboard-menu-container">
+          <UserDashboardMenu />
+        </div>
+        <div className="admin-dashboard-content-container">
+          <h1>hello, {auth.user.name}</h1>
+        </div>
+      </div>
     </div>
   );
 }

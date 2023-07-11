@@ -5,15 +5,15 @@ function Category() {
 
     const category_images=[
         {
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/files/380-493_02.png?v=1675932827",
+            src:"https://static.wixstatic.com/media/112644_c04b8549ce654194a20ca5efeae88d58~mv2.jpg/v1/fill/w_468,h_1023,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_c04b8549ce654194a20ca5efeae88d58~mv2.jpg",
             category:"Original Paintings"
         },
         {
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/files/380-493_03.png?v=1675932845",
+            src:"https://static.wixstatic.com/media/112644_670a5eddc86245c3b0f9d9de82856694~mv2.jpg/v1/fill/w_465,h_1023,al_t,q_85,usm_0.66_1.00_0.01,enc_auto/112644_670a5eddc86245c3b0f9d9de82856694~mv2.jpg",
             category:"Art Products"
         },
         {
-            src:"https://cdn.shopify.com/s/files/1/0716/7367/6072/files/380-493.png_03.png?v=1675932792",
+            src:"https://static.wixstatic.com/media/112644_5d9ed30259ff4edd916779d7aaf8d4dc~mv2.jpg/v1/fill/w_465,h_1023,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_5d9ed30259ff4edd916779d7aaf8d4dc~mv2.jpg",
             category:"Canvas Paintings"
         }
     ]
