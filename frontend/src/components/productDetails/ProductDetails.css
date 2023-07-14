@@ -1,18 +1,22 @@
 .product-details-bg-container{
     padding: 50px;
+    display: flex;
+    justify-content: center;
 }
 .product-details-section{
     display: flex;
     justify-content: space-evenly;
-}
-.product-details-image-section{
-    width: 40%;
+    align-items: center;
+    width: 90%;
 }
 .product-details-main-image{
-    padding: 10px;
+    width:35%;
+    height: 650px
 }
 .product-details-main-image>img{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .product-details-more-images{
     display: flex;
@@ -32,7 +36,8 @@
 }
 .product-details-section-heading{
     font-family: 'Source Serif 4', serif;
-    font-size: 40px;
+    color:#021a4a;
+    font-size: 38px;
     font-weight: 400;
 }
 .product-details-section-discount-card{
@@ -55,10 +60,11 @@
 }
 .product-details-section-discount-price{
     font-family: 'Source Serif 4', serif;
-    color: #613d3c;
+    /* color: #021a4a; */
+    color:#394a6e;
     margin-right: 10px;
     font-size: 23px;
-    font-weight: 600;
+    font-weight: 400;
 }
 .product-details-section-quantity-container{
     margin: 20px 0px 20px 0px;
@@ -66,8 +72,9 @@
 }
 .product-details-section-quantiy-heading{
     font-family: 'Source Serif 4', serif;
-    font-size: 21px;
+    font-size: 18px;
     font-weight: 400;
+    color: #637396;
 }
 .product-details-section-quantity-button-container{
     display: flex;
@@ -79,15 +86,16 @@
     font-size: 20px;
     border-style: none;
     border-width: 0px;
-    background-color: #f4e8e8;
+    background-color: #e2ebf7;
     cursor: pointer;
+    font-size: 12px;
 }
 .product-details-section-quantity-button-container>div{
     padding: 8px 15px 8px 15px;
     font-family: 'Source Serif 4', serif;
-    background-color: #372b2b;
+    background-color: #394a6e;
     color: white;
-    font-size: 20px;
+    font-size: 13px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +108,7 @@
 }
 .product-details-section-button-container>button{
     font-family: 'Source Serif 4', serif;
-    background-color: #372b2b;
+    background-color: #394a6e;
     color: white;
     border-style: none;
     width: 45%;
@@ -110,7 +118,7 @@
 }
 .product-details-info-container>h1{
     font-family: 'Source Serif 4', serif;
-    color: #372b2b;
+    color: #224286;
     font-size: 26px;
     font-weight: 600;
 }
@@ -122,18 +130,24 @@
     list-style: circle;
     font-family: 'Source Serif 4', serif;
     font-size: 18px;
+    color:#637396;
 }
 .product-details-section-buy-now{
     background-color: white !important; 
-    color: #372b2b !important;
-    border: solid 1px #372b2b !important;
+    color: #394a6e !important;
+    border: solid 2px #394a6e !important;
 }
 @media screen and (min-width:320px) and (max-width:576px){
     .product-details-bg-container{
         padding: 10px;
     }
+    .product-details-main-image{
+        width: 100%;
+        height: 450px;
+    }
     .product-details-section{
         display: block;
+        width: 100%;
     }
     .product-details-image-section{
         width: 100%;

@@ -3,6 +3,7 @@ import AdminMenu from "../AdminMenu";
 import "../AdminDashboard.css";
 import Form from "./Form";
 import axios from "axios";
+import { toast } from "react-toastify";
 function CreateCategory() {
   const [data,setData]=useState();
   const [name,setName]=useState("");
@@ -23,6 +24,7 @@ function CreateCategory() {
       name
     });
     if(res.data.success){
+      toast(res.data.message);
       setName("");
       getCategory();
     }else{

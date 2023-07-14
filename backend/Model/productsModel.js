@@ -7,16 +7,16 @@ const productModel = new mongoose.Schema({
     require: true,
   },
   original_price: {
-    type: String,
+    type: Number,
     trim: true,
     require: true,
   },
   discount_price: {
-    type: String,
+    type: Number,
     trim: true,
   },
   discount: {
-    type: String,
+    type: Number,
     trim: true,
   },
   image_src: {
@@ -28,10 +28,6 @@ const productModel = new mongoose.Schema({
     type: Array,
     trim: true,
     require: true,
-  },
-  related_images: {
-    type: Array,
-    trim: true,
   },
   quantity:{
     type:Number,

@@ -2,11 +2,10 @@ import React,{useState,useEffect} from "react";
 import AdminMenu from "../AdminMenu";
 import "../AdminDashboard.css";
 import axios from 'axios';
+import { toast } from "react-toastify";
 function CreateProducts() {
-  // const instance = axios.create();
-  // delete instance.defaults.headers.common['Authorization'];
-  const auth = JSON.parse(localStorage.getItem('auth')).token;
   const [categories,setCategories] = useState([]);
+  const [msg,setMsg]=useState();
   const [data,setData] = useState({
     title:"",
     original_price:"",
@@ -15,18 +14,9 @@ function CreateProducts() {
     category:"",
     product_status:""
   })
-  const [more,setMore]=useState({
-    image_url:"",
-    product_info:[],
-    related_images:[]
-  })
-  const [image,setImage]=useState("");
-  let main_image;
-  const [rel,setRel] = useState();
-  const relImages=[];
+
   const [productInfo,setProductInfo]= useState([]);
   const [productImage,setProductImage] = useState();
-  console.log(productImage);
 
   useEffect(()=>{
           axios.get('http://localhost:5000/api/v1/category/get-categories')
@@ -39,45 +29,9 @@ function CreateProducts() {
       return{...prevState,[e.target.name]:e.target.value,}
     })
   }
-  const handleSubmit= async (e)=>{
-    e.preventDefault()
-    // if(image){
-    //   const data = new FormData();
-    //   data.append("file", image);
-    //   data.append("upload_preset", "tvelbre1");
-    //   console.log(data);
-    //   const res = await instance.post("https://api.cloudinary.com/v1_1/art-store632/image/upload", data)
-    //   main_image=res.data.secure_url; 
-    //   console.log("main_image",main_image);
-    // }
-    // if(rel){
-    //   var result = Object.entries(rel);
-    //   result.map(async (value) => {
-    //     const data = new FormData();
-    //     data.append("file", value[1]);
-    //     data.append("upload_preset", "tvelbre1");
-    //     console.log(data);
-    //     const res = await instance.post("https://api.cloudinary.com/v1_1/art-store632/image/upload", data)
-    //     relImages.push(res.data.secure_url); 
-    //     console.log("relImages",relImages);
-    //   })
-    //   console.log(relImages.length);
-    // }
-  //  const info = productInfo.split(",");
-  //  console.log(relImages.length,main_image);
-  //  if(true){
-  //   // data.image_src = main_image;
-  //   data.product_info = info;
-  //   axios.post('http://localhost:5000/api/v1/products/addProduct',{
-  //     data
-  //   }).then((res)=>console.log(res)).catch((err)=>console.log(err));
-  //  }
-  //  console.log(data);
-  // const info = productInfo.splice(",");
-  // const res = await axios.post('http://localhost:5000/api/v1/products/addProduct',{data})
-  // console.log(res);
-  transformFile(image);
-
+  const handleImageUpload= async (e)=>{
+    const file = e.target.files[0];
+  transformFile(file);
   }
 
   const transformFile =(file) =>{
@@ -86,20 +40,35 @@ function CreateProducts() {
 
     if(file){
       reader.readAsDataURL(file);
-      reader.onloaded=()=>{
+      reader.onloadend=()=>{
         setProductImage(reader.result)
       }
-      console.log(productImage);
     }else{
       setProductImage(
         ""
       )
     }
   }
+
+  const handleSubmit = (e)=>{
+    document.getElementById("message").textContent = 'In Proccess'
+    e.preventDefault();
+
+    const product_Info = productInfo.split(",");
+    data.product_info=product_Info;
+    data.image_src=productImage;
+    console.log(data);
+    axios.post('http://localhost:5000/api/v1/products/addProduct',data)
+    .then((res)=>{
+      document.getElementById('message').textContent="";
+      toast(res.data.message);
+    })
+    .catch((err)=>console.log(err));
+  }
+
   return (
     <>
       <div className="admin-heading-container">
-        {JSON.stringify(data)}
       </div>
       <div className="admin-dashboard-main-container">
         <div className="admin-dashboard-menu-container">
@@ -117,7 +86,7 @@ function CreateProducts() {
               <br />
               <input type="number" placeholder="discount price" name="discount_price" onChange={(e)=>handleData(e)}/>
               <br />
-              <input type="file" name="image_src" onChange={(e)=>setImage(e.target.files[0])}/>
+              <input type="file" name="image_src" onChange={handleImageUpload}/>
               <br />
               <input type="text" placeholder="product info" name="product_info" onChange={(e)=>setProductInfo(e.target.value)}/>
               <br />
@@ -134,6 +103,7 @@ function CreateProducts() {
               </select>
               <input type="submit" value="Submit"/>
             </form>
+            <p id="message"></p>
           </div>
         </div>
       </div>

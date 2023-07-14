@@ -13,10 +13,12 @@
 }
 .shop-image-container{
     width: 100%;
-    position: relative;
+    height:400px
 }
 .shop-image-container>img{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .shop-offer-container{
     position: absolute;
@@ -35,23 +37,22 @@
     padding: 10px;
 }
 .shop-card-text-container>h1{
-    font-family: 'Bacasime Antique', serif;
+    font-family: 'Source Serif 4', serif;;
     color: #021a4a;
+    font-size: 200;
 }
 .shop-filter-container{
-    border: solid 1px black;
     width: 20%;
+    height: fit-content;
+    padding: 20px;
 }
 .shop-page-main-container{
-    border: solid 1px black;
     display: flex;
 }
 .shop-container-main{
     width: 80%;
-    border: solid 1px black;
 }
 .shop-page-root-container{
-    border: solid 1px red;
     padding: 15px;
 }
 .shop-card-text-container>h1{
@@ -63,9 +64,10 @@
     margin-right: 10px;
 }
 .shop-card-discount-price{  
-    color:#372b28;
+    color:#224286;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 400;
+    font-size: 20px;
 }
 .shop-card-pagination{
     display: flex;
@@ -86,6 +88,54 @@
 }
 .shop-card-price-container{
     margin-top: 10px;
+}
+.shop-filter-container>h1{
+    margin: 0px 0px 10px 0px;
+    font-family: 'Source Serif 4', serif;;
+    color: #021a4a;
+    font-weight: 400;
+    font-size: 30px;
+    border: solid;
+    border-color: #021a4a;
+    border-width: 0px 0px 1px 0px;
+    padding: 0px 0px 13px 0px;
+}
+.category-filter-main-container{
+    padding: 0px 10px 10px 10px;
+}
+.category-filter{
+    margin: 0px 0px 5px 0px;
+}
+.category-filter>label{
+    font-size: 17px;
+    color: #637396;
+}
+.category-filter>input{
+    margin: 0px 3px 0px 0px;
+}
+.amount-filter-container>h1{
+    margin: 0px 0px 10px 0px;
+    font-family: 'Source Serif 4', serif;;
+    color: #021a4a;
+    font-weight: 400;
+    font-size: 30px;
+    border: solid;
+    border-color: #021a4a;
+    border-width: 0px 0px 1px 0px;
+    padding: 0px 0px 13px 0px;
+}
+.amount-filter-main-container{
+    padding:10px
+}
+.amount-filter{
+    margin-bottom: 3px;
+}
+.amount-filter>label{
+    font-size: 17px;
+    color: #637396;
+}
+.amount-filter>input{
+    margin: 0px 3px 0px 0px;
 }
 @media screen and (min-width:320px) and (max-width:576px){
     .shop-image-container-bg{

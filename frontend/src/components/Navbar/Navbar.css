@@ -119,21 +119,21 @@
 @media screen and (min-width:577px) and (max-width:769px) {
     .navbar-options{
         flex-direction: column;
-        width: 80%;
+        width: 100%;
         height: 100vh;
         justify-content: start;
         align-items: start;
         position: absolute;
-        top: 22%;
+        top: 13%;
         left: -100%;
         z-index: 1;
         background-color:white;
         padding: 10px;
         transition: 0.3s;
-        box-shadow: 10px 10px 100px #888888;
     }
     .nav-options-active{
         left:0%;
+        border: solid 1px black;
     }
     .navbar-logo>img{
         width: 45px;
@@ -145,7 +145,7 @@
         display: block;
     }
     .navbar-options{
-        display: none;
+        display: block;
     }
     .navbar-icons{
         display: none;

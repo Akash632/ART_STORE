@@ -3,11 +3,11 @@ import AdminMenu from "./AdminMenu";
 import "./AdminDashboard.css";
 import axios from "axios";
 function AdminDashboard() {
-  useEffect(()=>{
-    axios.get('http://localhost:5000/api/v1/products/getproducts')
-    .then((res)=>console.log(res))
-    .catch((err)=>console.log(err))
-  },[])
+  // useEffect(()=>{
+  //   axios.get('http://localhost:5000/api/v1/products/getproducts')
+  //   .then((res)=>console.log(res))
+  //   .catch((err)=>console.log(err))
+  // },[])
   return (
     <>
       <div className="admin-heading-container"></div>

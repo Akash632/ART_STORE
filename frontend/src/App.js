@@ -22,7 +22,11 @@ import Private from './routes/Private';
 import UserOrders from "./components/user/UserOrders";
 import UserDashboard from "./components/user/UserDashboard";
 import Gotobtn from "./components/Goto.js/Gotobtn";
-
+import CategoryWise from "./components/CategoryWise/CategoryWise";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import GetProduct from "./components/dashborads/admindashboard/dashboardMenuPages/GetProduct";
+import UpdateProduct from "./components/dashborads/admindashboard/dashboardMenuPages/UpdateProduct";
 
 function App() {
   return (
@@ -31,11 +35,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/shop" element={<Shop />} />
+          <Route exact path={"/shop"} element={<Shop />} />
           <Route exact path="/blog" element={<Blog />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/comissions" element={<Comission />} />
           <Route exact path="/:value/:id" element={<ProductDetails />} />
+          <Route exact path="/home/:value" element={<CategoryWise/>}/>
           {/* <Route exact path="/motion" element={<Motion/>}/> */}
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/cart" element={<Cart />} />
@@ -44,6 +49,8 @@ function App() {
             <Route exact path="admin/create-category" element={<CreateCategory />}/>
             <Route exact path="admin/create-product" element={<CreateProducts />}/>
             <Route exact path="admin/users" element={<Users />} />
+            <Route exact path="admin/products" element={<GetProduct/>}/>
+            <Route exact path="admin/updateProduct/:id" element={<UpdateProduct/>}/>
           </Route>
           <Route exact path="/dashboard" element={<Private/>}>
             <Route exact path="user" element={<UserDashboard/>}/>
@@ -54,6 +61,7 @@ function App() {
         <Gotobtn/>
         <Footer />
       </BrowserRouter>
+      <ToastContainer/>
     </div>
   );
 }

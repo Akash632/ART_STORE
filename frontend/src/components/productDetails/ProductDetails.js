@@ -6,19 +6,19 @@ import { UserContext } from "../../context/context";
 import { disableScroll, enableScroll } from "../../functions/functions";
 
 function ProductDetails() {
-  // const {navStatus,setNavStatus}=useContext(UserContext);
-  // if(navStatus){
-  //   disableScroll()
-  // }else{
-  //   enableScroll();
-  // }
+  const {navStatus,setNavStatus}=useContext(UserContext);
+  if(navStatus){
+    disableScroll()
+  }else{
+    enableScroll();
+  }
   const params = useParams();
   const [data, setData] = useState();
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/products//getProducts/${params.id}`)
+      .get(`http://localhost:5000/api/v1/products/getProducts/${params.id}`)
       .then((response) => setData(response.data.details))
       .catch((err) => console.log(err));
   }, []);
@@ -27,16 +27,9 @@ function ProductDetails() {
     <div className="product-details-bg-container">
       {data ? (
         <div className="product-details-section">
-          <div className="product-details-image-section">
             <div className="product-details-main-image">
               <img src={data.image_src} />
             </div>
-            <div className="product-details-more-images">
-              {data.related_images.map((images) => (
-                <img src={images} />
-              ))}
-            </div>
-          </div>
           <div className="product-details-description-section">
             <h1 className="product-details-section-heading">{data.title}</h1>
             <div className="product-details-discount-container">
@@ -49,11 +42,11 @@ function ProductDetails() {
             <div className="product-details-price-container">
               {data.discount_price && (
                 <span className="product-details-section-original-price">
-                  {data.original_price}
+                  Rs, {data.original_price}
                 </span>
               )}
               <span className="product-details-section-discount-price">
-                {data.original_price}
+                Rs.{data.original_price}
               </span>
             </div>
             <div className="product-details-section-quantity-container">
@@ -72,7 +65,7 @@ function ProductDetails() {
                 <button onClick={() => setQuantity(quantity + 1)}>+</button>
               </div>
             </div>
-            {data.product_status ? (
+            {data.product_status==="true"? (
               <div className="product-details-section-button-container">
                 <button className="product-details-section-btn">
                   Add to cart

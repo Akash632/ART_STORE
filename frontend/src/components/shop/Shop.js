@@ -12,7 +12,9 @@ function Shop() {
   const { navStatus, setNavStatus } = useContext(UserContext);
   const [shopItems, setShopItems] = useState();
   const [checked,setChecked] = useState([]);
+  const[data,setData]= useState();
   const [radio,setRadio] = useState([]);
+  console.log(data);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -38,22 +40,28 @@ function Shop() {
     enableScroll();
   }
 
-
-  useEffect(() => {
+  const getProducts = ()=>{
     axios
-      .get("http://localhost:5000/api/v1/products/getproducts")
-      .then((response) => setShopItems(response.data.products))
-      // .then((response)=>console.log(response.data.products))
-      .catch((err) => console.log(err));
+    .get("http://localhost:5000/api/v1/products/getproducts")
+    .then((response) => setShopItems(response.data.products))
+    .catch((err) => console.log(err));
+  }
 
-      axios.get('http://localhost:5000/api/v1/category/get-categories')
+  const getCategories = ()=>{
+    axios.get('http://localhost:5000/api/v1/category/get-categories')
       .then((response)=>setCategories(response.data.categories))
       .catch((err)=>console.log(err));
+  }
+  useEffect(() => {
+    getProducts();
+    getCategories();
   }, []);
 
   useEffect(()=>{
-    axios.post("http://localhost:5000/api/v1/products//getProductsByCategory",{checked})
-    .then((response)=>console.log(response))
+    axios.post("http://localhost:5000/api/v1/products/getProductsByFilter",{checked})
+    .then((response)=>{
+      setData(response.data)
+    })
     .catch(err=>console.log(err));
   },[checked])
 
@@ -88,18 +96,20 @@ function Shop() {
     <div className="shop-page-main-container">
     <div className="shop-filter-container">
           <h1>Shop by Collection</h1>
-    <div>
+      <div className="category-filter-container">
+        <div className="category-filter-main-container">
       {categories&&categories.map((item)=>(
-        <div key={item._id}>
+        <div key={item._id} className="category-filter">
         <input type="checkbox" value={item._id} id="category-checkbox" onChange={(e)=>handleCategories(e.target.checked,e.target.value)}/>
         <label htmlFor="category-checkbox">{item.name}</label><br/>
         </div>
       ))}
-      <div>
+      </div>
+      <div className="amount-filter-container">
         <h1>Filter by Amount</h1>
-        <div>
+        <div className="amount-filter-main-container">
         {prices.map((item)=>(
-        <div key={item._id} onChange={(e)=>handleRadio(e)}>
+        <div key={item._id} onChange={(e)=>handleRadio(e)} className="amount-filter">
         <input type="radio" value={item.array} id="category-checkbox" name="radio"/>
         <label htmlFor="category-checkbox">{item.name}</label><br/>
         </div>
@@ -110,8 +120,28 @@ function Shop() {
     </div>  
     <div className="shop-container-main">
       <div className="shop-container-bg">
-        {shopItems &&
-          shopItems.slice(firstIndex, lastIndex).map((value, index) => (
+        {data&&data.length>0?( data.map((value)=>(<div
+              className="shop-image-container-bg"
+              key={value._id}
+              onClick={() => navigate(`/shop/${value._id}`)}
+            >
+              <div className="shop-image-container">
+                <img src={value.image_src} />
+              </div>
+              <div className="shop-card-text-container">
+                <h1>{value.title}</h1>
+                <div className="shop-card-price-container">
+                  <span className="shop-card-discount-price">
+                    Rs.{value.original_price}
+                  </span>
+                  {value.discount_price && (
+                    <span className="shop-card-discount-price">
+                      {value.discount_price}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>))):(shopItems&&shopItems.slice(firstIndex, lastIndex).map((value, index) => (
             <div
               className="shop-image-container-bg"
               key={index}
@@ -128,8 +158,8 @@ function Shop() {
               <div className="shop-card-text-container">
                 <h1>{value.title}</h1>
                 <div className="shop-card-price-container">
-                  <span className="shop-card-original-price">
-                    {value.original_price}
+                  <span className="shop-card-discount-price">
+                    Rs.{value.original_price}
                   </span>
                   {value.discount_price && (
                     <span className="shop-card-discount-price">
@@ -139,7 +169,7 @@ function Shop() {
                 </div>
               </div>
             </div>
-          ))}
+          )))}
       </div>
       <div className="shop-card-pagination">
         <div>
