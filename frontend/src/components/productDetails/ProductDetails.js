@@ -1,15 +1,21 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import { UserContext } from "../../context/context";
 import { disableScroll, enableScroll } from "../../functions/functions";
+import { toast } from "react-toastify";
 
 function ProductDetails() {
-  const {navStatus,setNavStatus}=useContext(UserContext);
-  if(navStatus){
-    disableScroll()
-  }else{
+  const { navStatus, setNavStatus } = useContext(UserContext);
+  const { cart, setCart } = useContext(UserContext);
+  const { auth, setAuth } = useContext(UserContext);
+  const [cartItems, setCartItems] = useState();
+  const navigate = useNavigate();
+
+  if (navStatus) {
+    disableScroll();
+  } else {
     enableScroll();
   }
   const params = useParams();
@@ -17,19 +23,52 @@ function ProductDetails() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
+    auth.user &&
+      axios
+        .get(`http://localhost:5000/api/v1/cart/getCart/${auth.user._id}`)
+        .then((res) => {
+          if (res.data.success) {
+            setCartItems(res.data.result);
+          }
+        })
+        .catch((err) => console.log(err));
+
     axios
       .get(`http://localhost:5000/api/v1/products/getProducts/${params.id}`)
-      .then((response) => setData(response.data.details))
+      .then((response) => {
+        setData(response.data.details);
+      })
       .catch((err) => console.log(err));
+
+    let cartItems = JSON.parse(localStorage.getItem("cart"));
+    cartItems && setCart(cartItems);
   }, []);
 
+  const handleNavigate = () => {
+    navigate("/login");
+  };
+
+  const handleCart = (id) => {
+    let myCart = [...cart];
+    let existingItem = myCart.filter(item=>item._id===id);
+    if(existingItem.length>0){
+      toast('Item already added to cart')
+    }else{
+    setCart([...cart, { ...data, quantity }]);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([...cart, { ...data, quantity }])
+    );
+    toast("Item added to cart");
+    }
+  };
   return (
     <div className="product-details-bg-container">
       {data ? (
         <div className="product-details-section">
-            <div className="product-details-main-image">
-              <img src={data.image_src} />
-            </div>
+          <div className="product-details-main-image">
+            <img src={data.image_src} />
+          </div>
           <div className="product-details-description-section">
             <h1 className="product-details-section-heading">{data.title}</h1>
             <div className="product-details-discount-container">
@@ -65,9 +104,16 @@ function ProductDetails() {
                 <button onClick={() => setQuantity(quantity + 1)}>+</button>
               </div>
             </div>
-            {data.product_status==="true"? (
+            {data.product_status === "true" ? (
               <div className="product-details-section-button-container">
-                <button className="product-details-section-btn">
+                <button
+                  className="product-details-section-btn"
+                  onClick={
+                    auth.user
+                      ? ()=>handleCart(data._id)
+                      : handleNavigate
+                  }
+                >
                   Add to cart
                 </button>
                 <button className="product-details-section-buy-now">
@@ -84,8 +130,8 @@ function ProductDetails() {
             <div className="product-details-info-container">
               <h1>Product Info</h1>
               <ul className="product-details-list">
-                {data.product_info.map((value) => (
-                  <li>{value}</li>
+                {data.product_info.map((value, index) => (
+                  <li key={index}>{value}</li>
                 ))}
               </ul>
             </div>

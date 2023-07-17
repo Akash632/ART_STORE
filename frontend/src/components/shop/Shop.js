@@ -14,7 +14,7 @@ function Shop() {
   const [checked,setChecked] = useState([]);
   const[data,setData]= useState();
   const [radio,setRadio] = useState([]);
-  console.log(data);
+  const[filter,setFilter]=useState(false);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -91,12 +91,15 @@ function Shop() {
       console.log(radio);
     }
   }
+  console.log(filter);
   return (
     <div className="shop-page-root-container">
     <div className="shop-page-main-container">
-    <div className="shop-filter-container">
-          <h1>Shop by Collection</h1>
+    <div className="shop-filter-main-container">
+      <button className="shop-filter-btn" onClick={()=>setFilter(!filter)}>Filter</button>
+      <div className={filter?"shop-filter-container shop-filter-container-active":"shop-filter-container"}>
       <div className="category-filter-container">
+      <h1>Shop by Collection</h1>
         <div className="category-filter-main-container">
       {categories&&categories.map((item)=>(
         <div key={item._id} className="category-filter">
@@ -105,8 +108,9 @@ function Shop() {
         </div>
       ))}
       </div>
+      </div>
       <div className="amount-filter-container">
-        <h1>Filter by Amount</h1>
+        <h1>Shop by Amount</h1>
         <div className="amount-filter-main-container">
         {prices.map((item)=>(
         <div key={item._id} onChange={(e)=>handleRadio(e)} className="amount-filter">
@@ -115,8 +119,9 @@ function Shop() {
         </div>
       ))}
         </div>
-      </div>
+      
     </div>
+      </div>
     </div>  
     <div className="shop-container-main">
       <div className="shop-container-bg">

@@ -4,12 +4,29 @@ const cartModel = new mongoose.Schema({
     user_id:{
         type:mongoose.ObjectId,
         ref:'users',
-        required:true
+        require:true
     },
     product_id:{
         type:mongoose.ObjectId,
         ref:'products',
-        required:true
+        require:true
+    },
+    image_src:{
+        type:String,
+        require:true
+    },
+    title:{
+        type:String,
+        require:true
+    },
+    quantity:{
+        type:Number,
+        require:true,
+        default:1
+    },
+    price:{
+        type:Number,
+        require:true
     }
 })
 

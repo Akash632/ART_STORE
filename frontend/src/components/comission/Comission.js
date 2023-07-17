@@ -110,7 +110,7 @@ function Comission() {
           </div>
         </div>
         <div className="comission-card-image">
-          <img src="https://cdn.shopify.com/s/files/1/0716/7367/6072/articles/02.gif?v=1675933282" />
+          <img src="https://static.wixstatic.com/media/112644_e24d786acbad412894dfee594da3305b~mv2.jpg/v1/fill/w_581,h_755,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/112644_e24d786acbad412894dfee594da3305b~mv2.jpg" />
         </div>
       </div>
     </div>

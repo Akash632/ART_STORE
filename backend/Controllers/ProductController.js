@@ -2,6 +2,15 @@ const productModel = require("../Model/productsModel.js");
 const slugify = require("slugify");
 const categoryModel = require("../Model/categoryModel.js");
 const cloudinary = require("../Config/cloudinary.js");
+const braintree = require("braintree");
+const orderModel = require("../Model/orderModel.js");
+
+var gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 const addProductController = async (req, res) => {
   try {
@@ -198,6 +207,59 @@ const deleteProductController = async (req, res) => {
     });
   }
 };
+
+
+const braintreeTokenController= async (req,res)=>{
+  try{
+    gateway.clientToken.generate({},function(err,response){
+      if(err){
+        res.status(500).send({
+          err
+        })
+      }else{
+        res.send(response);
+      }
+    })
+  }catch(err){
+    console.log(err);
+  }
+}
+
+const brainTreePayementController= async(req,res)=>{
+  try{
+    const {nonce,cart}= req.body;
+
+    let total = 0
+
+    total = cart.reduce((acc,value)=>value.price*value.quantity+acc,0)
+
+    let newTransaction = gateway.transaction.sale({
+      amount:total,
+      paymentMethodNonce:nonce,
+      options:{
+        submitForSettlement:true
+      }
+    },
+    function(err,result){
+      if(result){
+        const order = new orderModel({
+          products:cart,
+          payement:result,
+          buyer:req.user._id,
+        }).save()
+        res.json({ok:true})
+      }else{
+        console.log(err);
+        res.status(500).send({
+          err
+        })
+      }
+    }
+    ) 
+  }catch(err){
+    console.log(err)
+  }
+}
 module.exports = {
   getProductController,
   productDetailsController,
@@ -206,4 +268,6 @@ module.exports = {
   getProductsByCategoryController,
   deleteProductController,
   updateProductController,
+  braintreeTokenController,
+  brainTreePayementController
 };

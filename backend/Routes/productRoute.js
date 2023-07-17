@@ -1,5 +1,5 @@
 const express =require('express');
-const { addProductController, getProductController, productDetailsController, getProductsByFilterController, getProductsByCategoryController, deleteProductController, updateProductController } = require('../Controllers/ProductController');
+const { addProductController, getProductController, productDetailsController, getProductsByFilterController, getProductsByCategoryController, deleteProductController, updateProductController, braintreeTokenController, brainTreePayementController } = require('../Controllers/ProductController');
 const {requireSignIn,isAdmin} = require('../Middlewares/authMiddleware')
 const productRouter = express.Router();
 
@@ -17,4 +17,10 @@ productRouter.delete('/deleteProduct/:id',requireSignIn,isAdmin,deleteProductCon
 
 productRouter.put('/updateProduct/:id',requireSignIn,isAdmin,updateProductController);
 
-module.exports = productRouter
+
+productRouter.get('/braintree/token',braintreeTokenController)
+
+productRouter.post('/braintree/payement',requireSignIn,brainTreePayementController)
+
+
+module.exports = productRouter;

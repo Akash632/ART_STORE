@@ -16,6 +16,9 @@ function UserDashboardMenu() {
         <div className='admin-dashboard-menu-main-container'>
     <h1>Hello, {auth.user.name}</h1>
     <div className='admin-dashboard-menu-btn-container'>
+    <NavLink to="/dashboard/user">
+          <button className='admin-menu-btn'>Profile</button>
+      </NavLink>
       <NavLink to="/dashboard/user/orders">
           <button className='admin-menu-btn'>Your Orders</button>
       </NavLink>
