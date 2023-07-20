@@ -44,7 +44,6 @@ const postData = async ()=>{
   return (
     <div>
       <div className="contact-poster-container">
-        <img src="https://cdn.shopify.com/s/files/1/0716/7367/6072/files/1500-300.png?v=1676004063" />
       </div>
       <div className="contact-details-main-container">
         <div className="contact-details-container">

@@ -1,4 +1,4 @@
-import React,{useContext, useState} from "react";
+import React,{useContext, useState,useEffect} from "react";
 import "./Comission.css";
 import { UserContext } from "../../context/context";
 import { disableScroll,enableScroll } from "../../functions/functions";
@@ -40,6 +40,7 @@ function Comission() {
       console.log(res.data.message);
     }
   }
+
   return (
     <AnimatePresence>
     <motion.div       
@@ -49,19 +50,18 @@ function Comission() {
     transition={{duration:5}}>
     <div>
       <div className="comission-page-heading-container">
-        <img src="https://cdn.shopify.com/s/files/1/0716/7367/6072/files/1500-300.png?v=1676004063"/>
       </div>
       <div className="comission-bg">
         <div className="comission-card-content">
           <div className="comission-card-content-container">
           <h1 className="comission-card-content-heading">
-            Get customized paintings for your loved ones.
+            Customized Paintings
           </h1>
           <div className="comission-card-image-small">
-          <img src="https://cdn.shopify.com/s/files/1/0716/7367/6072/articles/02.gif?v=1675933282" />
+          <img src="https://static.wixstatic.com/media/112644_09e29a69a31f4cb08d30cea9943def67~mv2.jpg/v1/fill/w_638,h_538,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/112644_09e29a69a31f4cb08d30cea9943def67~mv2.jpg" />
         </div>
           <p className="comission-card-content-para">
-            Hello!! We also take customized orders. The paintings are made with
+            Hello!!<br/> We also take customized orders. <br/>The paintings are made with
             high quality artist grade supplies. So if you're looking for
             anything hand painted to either gift your loved ones or just to add
             colors to your space, we're here for you.

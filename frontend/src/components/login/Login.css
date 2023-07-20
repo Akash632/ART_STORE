@@ -6,7 +6,7 @@
 }
 .login-card-container{
     width: 50%;
-    background-color: #f4e8e8;
+    background-image: linear-gradient(to left,white,#e7effa);
     display: flex;
     padding: 30px 20px 30px 20px;
     flex-direction: column;
@@ -18,7 +18,7 @@
 }
 .login-heading-container h1{
     font-family: 'Source Serif 4', serif;
-    color: #372b28;
+    color:#2f3d5c;
 }
 .login-input-container{
     width: 95%;
@@ -54,7 +54,7 @@
 }
 .login-button{
     color: white;
-    background-color: #372b28;
+    background-color: #2f3d5c;
     border-style: none;
     border-width: 0px;
     box-sizing: border-box;
@@ -68,12 +68,14 @@
     outline: none;
 }
 .login-header-container{
-    background-color: #f4e8e8;
-    height: 150px;
+    background-image: linear-gradient(to left,white,#e7effa);
+    height: 200px;
     text-align: center;
 }
 .login-button:hover{
-    background-color: #9d7a7a;
+    background-color: transparent;
+    color: #2f3d5c;
+    border: solid 1px #2f3d5c;
 }
 .login-text-container p span:hover{
     color:#9d7a7a;
@@ -87,9 +89,6 @@
     }
     .login-heading-container h1{
         font-size: 25px;
-    }
-    .login-header-container{
-        display: none;
     }
     .login-heading-container{
         margin: 0px 0px 20px 0px;
@@ -132,9 +131,6 @@
     }
     .login-heading-container h1{
         font-size: 30px;
-    }
-    .login-header-container{
-        display: none;
     }
     .login-heading-container{
         margin: 0px 0px 20px 0px;

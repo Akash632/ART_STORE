@@ -11,7 +11,7 @@ function User() {
           <UserDashboardMenu />
         </div>
         <div className="admin-dashboard-content-container">
-          <h1>hello, {auth.user.name}</h1>
+          <h1>hello, {auth.user?auth.user.name:""}</h1>
         </div>
       </div>
     </div>

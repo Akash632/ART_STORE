@@ -59,6 +59,7 @@ function ProductDetails() {
       "cart",
       JSON.stringify([...cart, { ...data, quantity }])
     );
+    navigate('/cart');
     toast("Item added to cart");
     }
   };
@@ -116,7 +117,7 @@ function ProductDetails() {
                 >
                   Add to cart
                 </button>
-                <button className="product-details-section-buy-now">
+                <button className="product-details-section-buy-now" onClick={auth.user?()=>navigate(`/payement/${data._id}`):()=>navigate('/login')}>
                   Buy now
                 </button>
               </div>

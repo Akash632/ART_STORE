@@ -68,7 +68,6 @@ const addProductController = async (req, res) => {
       message: "Product added successfully",
     });
   } catch (err) {
-    console.log(err);
     res.status(500).send({
       success: false,
       message: "It's not you, it's us",
@@ -77,7 +76,7 @@ const addProductController = async (req, res) => {
 };
 const getProductController = async (req, res) => {
   try {
-    const products = await productModel.find({});
+    const products = await productModel.find();
     res.status(200).send({
       success: true,
       products: products,
@@ -100,7 +99,6 @@ const productDetailsController = async (req, res) => {
       details: productDetails,
     });
   } catch (err) {
-    console.log(err);
     res.status(500).send({
       success: false,
       message: "Its not you. It's you",
@@ -115,7 +113,6 @@ const getProductsByFilterController = async (req, res) => {
     // if(checked.length>0){
     //    args.category = checked
     // }
-    console.log(args);
     const products = await productModel.find({ category: { $in: checked } });
     res.send(products);
   } catch (err) {
@@ -149,10 +146,8 @@ const getProductsByCategoryController = async (req, res) => {
 const updateProductController = async (req, res) => {
   try {
     const { id } = req.params;
-
     if (req.body.image_src) {
      const imgSrc = await productModel.find({ image_src: req.body.image_src });
-     console.log(imgSrc);
 
       if (imgSrc.length===0) {
         const upload_res = await cloudinary.uploader.upload(req.body.image_src, {
@@ -225,13 +220,13 @@ const braintreeTokenController= async (req,res)=>{
   }
 }
 
-const brainTreePayementController= async(req,res)=>{
+const brainTreeCartPayementController= async(req,res)=>{
   try{
     const {nonce,cart}= req.body;
 
     let total = 0
 
-    total = cart.reduce((acc,value)=>value.price*value.quantity+acc,0)
+    total = cart.reduce((acc,value)=>value.original_price*value.quantity+acc,0)
 
     let newTransaction = gateway.transaction.sale({
       amount:total,
@@ -249,7 +244,41 @@ const brainTreePayementController= async(req,res)=>{
         }).save()
         res.json({ok:true})
       }else{
-        console.log(err);
+        res.status(500).send({
+          err
+        })
+      }
+    }
+    ) 
+  }catch(err){
+    console.log(err)
+  }
+}
+
+const brainTreeShopPayementController= async(req,res)=>{
+  try{
+    const {nonce,data}= req.body;
+
+    let total = 0
+
+    total = data.original_price*data.quantity
+
+    let newTransaction = gateway.transaction.sale({
+      amount:total,
+      paymentMethodNonce:nonce,
+      options:{
+        submitForSettlement:true
+      }
+    },
+    function(err,result){
+      if(result){
+        const order = new orderModel({
+          products:data,
+          payement:result,
+          buyer:req.user._id,
+        }).save()
+        res.json({ok:true})
+      }else{
         res.status(500).send({
           err
         })
@@ -269,5 +298,6 @@ module.exports = {
   deleteProductController,
   updateProductController,
   braintreeTokenController,
-  brainTreePayementController
+  brainTreeCartPayementController,
+  brainTreeShopPayementController
 };

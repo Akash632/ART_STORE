@@ -1,31 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./Cart.css";
+import "../cart/Cart.css";
 import cartImg from "../../assets/cartImg.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../../context/context";
 import axios from "axios";
 import { toast } from "react-toastify";
 import DropIn from "braintree-web-drop-in-react";
 
-function Cart() {
+function Purchase() {
   const navigate = useNavigate();
-  const { cart, setCart } = useContext(UserContext);
   const [clientToken, setClientToken] = useState("");
   const [instance, setInstance] = useState("");
   const [loading, setLoading] = useState(false);
+  const [data,setData]=useState();
+  const params =useParams();
 
-  const deleteCart = async (id) => {
-    try {
-      console.log(id);
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === id);
-      myCart.splice(index, 1);
-      setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
+const getData=async()=>{
+    const res = await axios.get(`http://localhost:5000/api/v1/products/getProducts/${params.id}`);
+    setData(res.data.details);
+}
 
   //payement gatway token
 
@@ -47,16 +41,13 @@ function Cart() {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       await axios
-        .post("http://localhost:5000/api/v1/products/braintree/cartPayement", {
+        .post("http://localhost:5000/api/v1/products/braintree/shopayement", {
           nonce,
-          cart,
+          data,
         })
         .then((res) => {
-          console.log(res);
           if (res.data.ok) {
             setLoading(false);
-            setCart([]);
-            localStorage.removeItem("cart");
             navigate("/dashboard/user/orders");
             toast("Order placed");
           }
@@ -69,42 +60,32 @@ function Cart() {
   };
 
   useEffect(() => {
+    getData();
     getToken();
-
-    let existingCart = localStorage.getItem("cart");
-    if (existingCart) setCart(JSON.parse(existingCart));
-
-    console.log(cart);
   }, []);
 
   return (
     <div className="cart-main-container">
-      {cart && cart.length > 0 ? (
+      {data && (
         <div className="cart-page-main-container">
           <div className="cart-products-container">
-            {cart.map(
-              (value, index) =>
-                value && (
                   <div className="cart-products-cards-container">
                     <div className="cart-products-details-card">
                       <div className="cart-products-img-container">
-                        <img src={value.image_src} />
+                        <img src={data.image_src} />
                       </div>
                       <div className="cart-products-text-container">
-                        <h3>{value.title}</h3>
-                        <p>Rs. {value.original_price}</p>
-                        <p>Quantity: {value.quantity}</p>
+                        <h3>{data.title}</h3>
+                        <p>Rs. {data.original_price}</p>
+                        <p>Quantity: {data.quantity}</p>
                       </div>
                     </div>
                     <div className="cart-products-price-container">
                       <div>
-                        <p>{value.quantity * value.original_price}</p>
-                        <p onClick={() => deleteCart(value._id)}>X</p>
+                        <p>{data.quantity * data.original_price}</p>
                       </div>
                     </div>
                   </div>
-                )
-            )}
           </div>
           <div className="cart-products-checkout-main-container">
             <div className="cart-products-checkout">
@@ -116,11 +97,9 @@ function Cart() {
                   <p>Subtotal</p>
                   <p>
                     Rs.
-                    {cart.reduce(
-                      (acc, value) =>
-                        value.original_price * value.quantity + acc,
-                      0
-                    )}
+                    {
+                        data.original_price * data.quantity
+                    }
                   </p>
                 </div>
                 <div className="cart-products-subtotal-cart">
@@ -137,13 +116,11 @@ function Cart() {
               </div>
               <div className="cart-products-checkout-total">
                 <h2>Total</h2>
-                {cart ? (
+                {data ? (
                   <h2>Rs. 
-                    {cart.reduce(
-                      (acc, value) =>
-                        value.original_price * value.quantity + acc,
-                      80
-                    )}
+                    {
+                        data.original_price * data.quantity + 80
+                    }
                   </h2>
                 ) : (
                   <h2>0</h2>
@@ -168,17 +145,9 @@ function Cart() {
             </div>
           </div>
         </div>
-      ) : (
-        <div className="cart-image-container">
-          <img src={cartImg} className="cart-image" />
-          <h1 className="cart-heading">Oops! Your cart is empty</h1>
-          <button className="cart-button" onClick={() => navigate("/shop")}>
-            Shop Now
-          </button>
-        </div>
       )}
     </div>
   );
 }
 
-export default Cart;
+export default Purchase;

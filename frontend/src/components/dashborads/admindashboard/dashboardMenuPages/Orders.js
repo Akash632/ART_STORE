@@ -1,36 +1,37 @@
-import React, { useState, useEffect, useContext } from "react";
-import UserDashboardMenu from "./UserDashboardMenu";
-import "./User.css";
+import React, { useEffect, useState } from "react";
+import AdminMenu from "../AdminMenu";
+import "../AdminDashboard.css";
 import axios from "axios";
-import { UserContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
-function UserOrders() {
-  const [data, setData] = useState([]);
-  const { auth, useAuth } = useContext(UserContext);
-  const [products, setProducts] = useState([]);
-  let productDetails = [];
-  const cart = JSON.parse(localStorage.getItem("cart"));
-  const navigate=useNavigate();
-
-  const getData = async () => {
-    const res = await axios.get(
-      `http://localhost:5000/api/v1/auth/orders/${auth.user._id}`
-    );
+function Orders() {
+  const navigate = useNavigate();
+  const [data,setData]=useState();
+  const [status,setStatus]=useState(["Not Process", 'Processing',"Shipped","delivered","cancelled"]);
+  const [changeStatus,setChangeStatus]=useState("");
+  const getData= async ()=>{
+    const res = await axios.get("http://localhost:5000/api/v1/auth/all-orders");
     setData(res.data.result);
-  };
-  useEffect(() => {
-    auth.user && getData();
-  }, [cart]);
+  }
+
+  const updateData= async (id)=>{
+    const res = await axios.put(`http://localhost:5000/api/v1/auth/order-status/${id}`,{status:changeStatus});
+    if(res.data.success){
+      getData();
+    }
+  }
+  useEffect(()=>{
+    getData()
+  },[])
 
   return (
     <>
       <div className="admin-heading-container"></div>
+
       <div className="admin-dashboard-main-container">
         <div className="admin-dashboard-menu-container">
-          <UserDashboardMenu />
+          <AdminMenu />
         </div>
         <div className="admin-dashboard-content-container">
-          {data.length>0&&<h1>Your Orders</h1>}
           {data && data.length > 0 ? (
             data.map((value) => (
               <div className="user-order-page-main-container">
@@ -50,7 +51,10 @@ function UserOrders() {
                       <div className="user-order-products-price-container">
                         <div>
                           <p style={{marginBottom:"10px"}}><span>Order status : </span>{value.payement.success.toString()}</p>
-                          {value.payement.success?<p><span>Shipping : </span>{value.status}</p>:<p></p>}
+                          {value.payement.success?<select onChange={(value)=>setChangeStatus(value)} style={{marginBottom:"10px"}} name={value.status}>
+                            {status.map((item)=><option value={item}>{item}</option>)}
+                          </select>:<p></p>}
+                          <button onClick={(value)=>updateData(value._id)}>Update</button>
                         </div>
                       </div>
                     </div>
@@ -72,4 +76,4 @@ function UserOrders() {
   );
 }
 
-export default UserOrders;
+export default Orders;

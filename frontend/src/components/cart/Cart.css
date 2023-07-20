@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 100px 30px 100px 30px;
     background-image: linear-gradient(to left,white,#e7effa);
     font-family: 'Source Serif 4', serif;
     color:#021a4a;
@@ -20,17 +20,18 @@
 .cart-heading{
     font-family: 'Source Serif 4', serif;
     color: #021a4a;
+    font-weight: 200;
 }
 .cart-button{
     margin: 20px;
     font-family: 'Source Serif 4', serif;
     font-size: 20px;
     padding: 10px;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
 }
 .cart-button:hover{
-    background-color: #021a4a;
+    background-color: #23417e;
     color: white;
 }
 .cart-page-main-container{

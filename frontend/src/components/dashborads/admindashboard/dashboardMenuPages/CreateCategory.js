@@ -42,17 +42,21 @@ function CreateCategory() {
      const res = await axios.put(`http://localhost:5000/api/v1/category/update-category/${postId}`,{
       name
     });
+    console.log(res);
     if(res.data.success){
       getCategory();
       setUpdate(false);
       setName("");
-    }
-     console.log(res);
-    // console.log("Hello")
+    }    // console.log("Hello")
   }
   const deleteCategory=async (itemId)=>{
-    const res = await axios.delete(`http://localhost:5000/api/v1/category/delete-category/${itemId}`);
-    console.log(res);
+    axios.delete(`http://localhost:5000/api/v1/category/delete-category/${itemId}`)
+    .then((res)=>{
+      if(res.data.success){
+        getCategory();
+      }
+    })
+    .catch((err)=>console.log(err));
     console.log(itemId);
   }
 
@@ -66,16 +70,18 @@ function CreateCategory() {
       <div className="admin-dashboard-menu-container">
         <AdminMenu/>
       </div>
-      <div className="admin-dashboard-content-container">
+      <div className="admin-dashboard-category-container">
         <div className="create-category-heading-container">
-          <h1>Create category</h1>
+          <h1 className="admin-update-heading">Create category</h1>
+          <div className="create-category-input">
           <Form value={name} setValue={setName} handleCreate={createCategory} update={update} handleUpdate={updateCategory}/>
+          </div>
         </div>
-        <div>
+        <div className="admin-category-card-container">
           {data&&data.map((item)=>(
-            <div key={item._id}>
+            <div key={item._id} className="admin-category-card">
           <p>{item.name}</p>
-          <div>
+          <div className="admin-category-btn-container">
             <button onClick={()=>{handleUpdate(item._id,item.name)}}>Edit</button>
             <button onClick={()=>{deleteCategory(item._id)}}>Delete</button>
           </div>

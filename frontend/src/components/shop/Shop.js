@@ -84,7 +84,7 @@ function Shop() {
     if(e.target.checked){
       let newValues = e.target.value.split(",");
       if(radio.length===0){
-        radio.push(newValues);
+        radio.push(...newValues);
       }else{
         radio.splice(0,1,newValues);
       }

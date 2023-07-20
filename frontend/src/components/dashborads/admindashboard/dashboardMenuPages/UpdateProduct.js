@@ -45,7 +45,6 @@ function UpdateProduct() {
         [e.target.name]: e.target.value,
       };
     });
-    console.log(values);
   };
 
   const handleFiles=(e)=>{
@@ -68,9 +67,9 @@ function UpdateProduct() {
   const handleUpdate = async (e)=>{
     e.preventDefault();
     setLoading(true);
-    console.log(values);
-    // values.image_src=productImage;
-    console.log(values);
+    if(productImage){
+      values.image_src=productImage;
+    }
     const res = await axios
     .put(`http://localhost:5000/api/v1/products/updateProduct/${params.id}`,values)
     .then((res)=>{
@@ -92,8 +91,8 @@ function UpdateProduct() {
           </div>
           <div className="admin-dashboard-update-container">
             <div className="admin-update-details-container">
-              <h1>Update</h1>
-              <form onSubmit={handleUpdate}>
+              <h1 className="admin-update-heading">Update Products</h1>
+              <form onSubmit={handleUpdate} className="admin-update-form-main-container">
                 <input
                   type="text"
                   placeholder="name"
@@ -136,7 +135,8 @@ function UpdateProduct() {
                   onChange={(e) => setProductInfo(e.target.value)}
                 />
                 <br />
-                <select name="category" onChange={handleChange}>
+                <div className="admin-dropdown-container">
+                <select name="category" onChange={handleChange} className="admin-dropdown">
                   <option>Categories</option>
                   {categories &&
                     categories.map((value) => (
@@ -145,13 +145,15 @@ function UpdateProduct() {
                       </option>
                     ))}
                 </select>
-                <br />
-                <select name="product_status" onChange={handleChange}>
+                <select name="product_status" onChange={handleChange} className="admin-dropdown">
                   <option>product status</option>
                   <option value="true">In Stock</option>
                   <option value="false">Out of stock</option>
                 </select>
-                <input type="submit" value="Submit" />
+                </div>
+                <div className="admin-update-btn-container">
+                <input type="submit" value="Submit" className="admin-update-btn"/>
+                </div>
                 <br/>
                 <div>
                 <ClipLoader color="#1b52a6" loading={loading}/>

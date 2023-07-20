@@ -1,4 +1,5 @@
 const userModel = require("../Model/userModel.js");
+const orderModel = require("../Model/orderModel.js");
 const { hashPassword, comparePassword } = require("../Helpers/authHelper.js");
 const jwt = require('jsonwebtoken');
 
@@ -6,7 +7,6 @@ const registerController = async (req, res) => {
   try {
     const { name, email, password, phone, address } = req.body;
 
-    console.log(name,email,password,phone,address);
     //validations
     if (!name || !email || !password || !phone || !address) {
       return res.status(200).send({
@@ -45,7 +45,6 @@ const registerController = async (req, res) => {
     });
   }
    catch (err) {
-    console.log(err);
     res.status(500).send({
       success: false,
       message: "it's not you it's us"
@@ -82,7 +81,6 @@ const loginController = async (req, res) => {
       });
     }
 
-    console.log(process.env.JWT_SECRET)
     //token
     const token = await jwt.sign({_id:user.id},process.env.JWT_SECRET,{expiresIn:'7d'});
 
@@ -100,7 +98,6 @@ const loginController = async (req, res) => {
     });
   } 
   catch (err) {
-    console.log(err);
     res.status(500).send({
       success: false,
       message: "it's not you. its's us",
@@ -110,4 +107,65 @@ const loginController = async (req, res) => {
 };
 
 
-module.exports = {registerController, loginController};
+const getOrdersController = async (req,res)=>{
+  try{
+    const {id} = req.params;
+
+
+    const result = await orderModel.find({buyer:id}).sort({"createdAt":1});
+
+    res.status(200).send({
+      success:true,
+      message:"List of orders",
+      result:result
+    })
+
+  }catch(err){
+    console.log(err);
+    res.status(500).send({
+      success:false,
+      message:"Internal server error"
+    })
+  }
+}
+
+const getAllOrdersController=async(req,res)=>{
+  try{
+    const result = await orderModel.find({}).populate("products._id").sort({"createdAt":1});
+
+    console.log(result);
+
+    res.status(200).send({
+      success:true,
+      message:"List of orders",
+      result:result
+    })
+
+  }catch(err){
+    console.log(err);
+    res.status(500).send({
+      success:false,
+      message:"Internal server error"
+    })
+  }
+}
+
+const orderStatusController=async(req,res)=>{
+  try{
+    const {id}=req.params;
+    const {status}=req.body;
+
+    const result = await orderModel.findByIdAndUpdate({_id:id}, {status:status},{new:true});
+
+    res.status(200).send({
+      success:true,
+      message:"Status updated successfully"
+    })
+  }catch(err){
+    res.status(500).send({
+      success:false,
+      message:"Internal server error"
+    })
+  }
+}
+module.exports = {registerController, loginController,getOrdersController,getAllOrdersController,orderStatusController};

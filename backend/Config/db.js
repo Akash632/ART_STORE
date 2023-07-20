@@ -1,8 +1,9 @@
 const mongoose=require('mongoose');
+require('dotenv').config();
 
 const connectdb = async () =>{
     try{
-        await mongoose.connect('mongodb://127.0.0.1:27017/art_store');
+        await mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.w6ihxug.mongodb.net/?retryWrites=true&w=majority`);
         console.log('Connected to MongoDB');
     }
     catch(err){

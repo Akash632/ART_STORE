@@ -15,7 +15,7 @@ import Cart from "./components/cart/Cart";
 import AdminDashboard from "./components/dashborads/admindashboard/AdminDashboard";
 import CreateCategory from "./components/dashborads/admindashboard/dashboardMenuPages/CreateCategory";
 import CreateProducts from "./components/dashborads/admindashboard/dashboardMenuPages/CreateProducts";
-import Users from "./components/dashborads/admindashboard/dashboardMenuPages/Users";
+import Orders from "./components/dashborads/admindashboard/dashboardMenuPages/Orders";
 import Check from "./context/Check";
 import AdminRoute from "./routes/AdminRoute";
 import Private from './routes/Private';
@@ -27,6 +27,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GetProduct from "./components/dashborads/admindashboard/dashboardMenuPages/GetProduct";
 import UpdateProduct from "./components/dashborads/admindashboard/dashboardMenuPages/UpdateProduct";
+import Purchase from "./components/purchase/Purchase";
 
 function App() {
   return (
@@ -48,7 +49,7 @@ function App() {
             <Route exact path="admin" element={<AdminDashboard />} />
             <Route exact path="admin/create-category" element={<CreateCategory />}/>
             <Route exact path="admin/create-product" element={<CreateProducts />}/>
-            <Route exact path="admin/users" element={<Users />} />
+            <Route exact path="admin/orders" element={<Orders />} />
             <Route exact path="admin/products" element={<GetProduct/>}/>
             <Route exact path="admin/updateProduct/:id" element={<UpdateProduct/>}/>
           </Route>
@@ -56,6 +57,7 @@ function App() {
             <Route exact path="user" element={<UserDashboard/>}/>
             <Route exact path="user/orders" element={<UserOrders/>}/>
           </Route>
+          <Route exact path="/payement/:id" element={<Purchase/>}/>
           <Route exact path="/check" element={<Check/>}/>
         </Routes>
         <Gotobtn/>

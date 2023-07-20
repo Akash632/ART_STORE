@@ -3,8 +3,26 @@ const mongoose=require('mongoose');
 const orderModel = new mongoose.Schema({
     products:[
         {
-            type:mongoose.ObjectId,
-            ref:'products'
+            product_id:{
+                type:mongoose.ObjectId,
+                ref:'products'
+            },
+            quantity:{
+                type:Number,
+                require:true
+            },
+            title:{
+                type:String,
+                require:true
+            },
+            image_src:{
+                type:String,
+                require:true
+            },
+            original_price:{
+                type:Number,
+                require:true
+            }
         },
     ],
     payement:{},

@@ -9,7 +9,8 @@ function GetProduct() {
   const [data,setData]=useState();
   const getProducts=async()=>{
     const res = await axios.get('http://localhost:5000/api/v1/products/getproducts')
-    .then((res)=>setData(res.data.products))
+    .then((res)=>{setData(res.data.products)
+    console.log(res.data)})
     .catch((err)=>console.log(err));
   }
 
@@ -37,14 +38,16 @@ function GetProduct() {
       <div className="admin-dashboard-content-container">
         {data&&data.map((value)=>(
                   <div className='admin-product-card' key={value._id}>
+                  <div className='admin-product-main-container'>
                   <div className='admin-product-img'>
                     <img src={value.image_src}/>
                   </div>
                   <div className='admin-product-details'>
                     <p>{value.title}</p>
-                    <p>{value.original_price}</p>
-                    <p>Category</p>
+                    <p>Rs. {value.original_price}</p>
+                    <p>Product Status: <span>{value.product_status}</span></p>
                   </div>
+                    </div>
                   <div className='admin-product-btn'>
                     <button onClick={()=>navigate(`/dashboard/admin/updateProduct/${value._id}`)}>Edit</button>
                     <button onClick={()=>deleteProducts(value._id)}>Delete</button>

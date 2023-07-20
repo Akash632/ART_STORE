@@ -17,7 +17,6 @@ const comissionsController = async (req,res)=>{
             message:"We get back to you soon!"
         })
     }catch(err){
-        console.log(err);
         res.status(500).send({
             success:false,
             message:"Internal server error"

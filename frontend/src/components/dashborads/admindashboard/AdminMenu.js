@@ -15,8 +15,8 @@ function AdminMenu() {
         <NavLink to="/dashboard/admin/products">
             <button className='admin-menu-btn'>Products</button>
         </NavLink>
-        <NavLink to="/dashboard/admin/users">
-            <button className='admin-menu-btn'>All Users</button>
+        <NavLink to="/dashboard/admin/orders">
+            <button className='admin-menu-btn'>Orders</button>
         </NavLink>
       </div>
     </div>
