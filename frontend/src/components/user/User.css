@@ -56,7 +56,13 @@
     font-weight: 600;
     font-size: 18px;
 }
-.admin-dashboard-content-container h1{
+.user-dashboard-content-container{
+    padding: 10px;
+    width: 70%;
+    height: 450px;
+    overflow-y: auto;
+}
+.update-user-dashboard-content-container h1{
     font-family: 'Source Serif 4', serif;
     color:#021a4a;
     margin: 10px;
@@ -82,4 +88,122 @@
 .no-order-shop-now-btn:hover{
     background-color: #021a4a;
     color: white;
+}
+/* .user-profile-container{
+    border: solid 1px black;
+} */
+.user-profile-main-card{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    background-image: linear-gradient(to left,white,#e7effa);
+}
+.user-profile-icon-card{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.user-profile-details-card{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    width: fit-content;
+    padding: 0px 50px 10px 50px;
+}
+/* .user-profile-btn-card{
+    border: solid 1px black;
+} */
+.user-profile-btn-card button{
+    color: white;
+    /* background-color: #372b28; */
+    background-color: #394a6e;
+    border-style: none;
+    border-width: 0px;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: solid 1px #394a6e;
+}
+.user-profile-btn-card button:hover{
+    background-color: transparent;
+    color: #394a6e
+}
+.user-profile-details-card{
+    font-family: 'Source Serif 4', serif;
+    color: #394a6e;
+}
+.user-profile-details-card p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.user-profile-details-card span{
+    font-weight: 400;
+}
+.update-user-dashboard-content-container{
+    padding: 10px;
+    width: 70%;
+    height: 350px;
+    overflow-y: auto;
+}
+.update-user-card-main-container{
+    width: 40%;
+    height: 250px;
+}
+.update-user-card-container{
+    width: 100%;
+}
+.update-user-card-container input{
+    width: 100%;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+}
+.update-user-btn-container button{
+    color: white;
+    /* background-color: #372b28; */
+    background-color: #394a6e;
+    border-style: none;
+    border-width: 0px;
+    padding: 10px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    cursor: pointer;
+    border: solid 1px #394a6e;
+}
+@media screen and (min-width:320px) and (max-width:577px){
+    .admin-heading-container{
+        height: 100px;
+        border: solid 1px black;
+    }
+    .admin-dashboard-main-container{
+        border: solid 1px red;
+        padding: 2px;
+        width: 100%;
+    }
+    .admin-dashboard-menu-container{
+        border: solid 1px black;
+        width: 100%;
+    }
+    .user-profile-container{
+        border: solid 1px black;
+    }
+    .login-header-container{
+        display: none;
+    }
+    .admin-dashboard-main-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .admin-dashboard-menu-main-container{
+        width: 100%;
+    }
+    .user-dashboard-content-container{
+        border: solid 1px black;
+        width: 100%;
+    }
 }

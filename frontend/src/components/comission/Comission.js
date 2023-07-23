@@ -27,7 +27,7 @@ function Comission() {
   }
 
   const handleSubmit= async ()=>{
-    let res = await axios.post('http://localhost:5000/comissions',{
+    let res = await axios.post('https://palette-tales.onrender.com/comissions',{
       name:data.name,
       phone:data.phone,
       email:data.email,

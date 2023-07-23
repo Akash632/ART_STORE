@@ -15,7 +15,7 @@ export default function PrivateRoute(){
     
     useEffect(()=>{
         const authCheck = async()=>{
-            const res = await axios.get('http://localhost:5000/api/v1/auth/user-auth');
+            const res = await axios.get('https://palette-tales.onrender.com/api/v1/auth/user-auth');
             console.log(res);
             if(res.data.ok){
                 setOk(true)

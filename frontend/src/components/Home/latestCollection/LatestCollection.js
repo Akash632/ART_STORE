@@ -40,7 +40,7 @@ function LatestCollection() {
     // ]
 
     const getData= async ()=>{
-        const res = await axios.get("http://localhost:5000/api/v1/products/getproducts")
+        const res = await axios.get("https://palette-tales.onrender.com/api/v1/products/getproducts")
         setLatestCollection(res.data.products)
     }
     useEffect(()=>{

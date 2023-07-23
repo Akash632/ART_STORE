@@ -13,6 +13,7 @@ function CreateProducts() {
     discount_price: "",
     category: "",
     product_status: "",
+    product_info:""
   });
 
   const [productInfo, setProductInfo] = useState([]);
@@ -20,7 +21,7 @@ function CreateProducts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/v1/category/get-categories")
+      .get("https://palette-tales.onrender.com/api/v1/category/get-categories")
       .then((response) => setCategories(response.data.categories))
       .catch((err) => console.log(err));
   }, []);
@@ -50,20 +51,21 @@ function CreateProducts() {
   };
 
   const handleSubmit = (e) => {
-    document.getElementById("message").textContent = "In Proccess";
     e.preventDefault();
+    document.getElementById("message").textContent = "In Proccess";
 
-    const product_Info = productInfo.split(",");
-    data.product_info = product_Info;
+    // console.log(productInfo);
+    // data.product_info = product_Info;
     data.image_src = productImage;
-    console.log(data);
     axios
-      .post("http://localhost:5000/api/v1/products/addProduct", data)
+      .post("https://palette-tales.onrender.com/api/v1/products/addProduct", data)
       .then((res) => {
+        console.log(res);
         document.getElementById("message").textContent = "";
         toast(res.data.message);
       })
       .catch((err) => console.log(err));
+    console.log(data);
   };
 
   return (
@@ -116,9 +118,9 @@ function CreateProducts() {
               <br />
               <input
                 type="text"
-                placeholder="product info"
+                placeholder="product_info"
                 name="product_info"
-                onChange={(e) => setProductInfo(e.target.value)}
+                onChange={(e)=>handleData(e)}
               />
               <br />
               <div className="admin-dropdown-container">
@@ -140,6 +142,7 @@ function CreateProducts() {
               <div className="admin-update-btn-container">
               <input type="submit" value="Submit" className="admin-update-btn"/>
               </div>
+              <p id="message"></p>
             </form>
           </div>
           <div className="admin-create-image-container">

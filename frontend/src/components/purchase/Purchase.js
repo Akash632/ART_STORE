@@ -17,7 +17,7 @@ function Purchase() {
 
 
 const getData=async()=>{
-    const res = await axios.get(`http://localhost:5000/api/v1/products/getProducts/${params.id}`);
+    const res = await axios.get(`https://palette-tales.onrender.com/api/v1/products/getProducts/${params.id}`);
     setData(res.data.details);
 }
 
@@ -26,7 +26,7 @@ const getData=async()=>{
   const getToken = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/v1/products/braintree/token")
+        .get("https://palette-tales.onrender.com/api/v1/products/braintree/token")
         .then((res) => {
           setClientToken(res.data.clientToken);
         })
@@ -37,11 +37,13 @@ const getData=async()=>{
   };
 
   const handlePayement = async () => {
+    console.log("payment block");
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
+      console.log("product data",data);
       await axios
-        .post("http://localhost:5000/api/v1/products/braintree/shopayement", {
+        .post("http://localhost:5000/api/v1/products/braintree/shopPayement", {
           nonce,
           data,
         })

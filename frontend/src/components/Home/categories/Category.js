@@ -8,7 +8,7 @@ function Category() {
   const navigate = useNavigate();
 
     useEffect(()=>{
-      axios.get('http://localhost:5000/api/v1/category/get-categories')
+      axios.get('https://palette-tales.onrender.com/api/v1/category/get-categories')
       .then((res)=>setCategories(res.data.categories))
       .catch((err)=>console.log(err));
     },[])
@@ -21,7 +21,7 @@ function Category() {
       <div className="category-card-images-container">
       {categories&&categories.slice(1,4).map((value)=>(
         <div key={value._id} className="category-card-container" onClick={()=>navigate(`/home/${value.slug}`)}>
-            <img src={value.image_url}/>
+            <img src={value.image_src}/>
             <button className="category-card-button">{value.name}</button>
         </div>
       ))}

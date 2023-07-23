@@ -18,7 +18,7 @@ function UpdateProduct() {
 
   const getProducts = async () => {
     const res = await axios
-      .get(`http://localhost:5000/api/v1/products/getproducts/${params.id}`)
+      .get(`https://palette-tales.onrender.com/api/v1/products/getproducts/${params.id}`)
       .then((res) => {
         if (res.data.success) {
           setValues(res.data.details);
@@ -29,7 +29,7 @@ function UpdateProduct() {
 
   const getCategories = async () => {
     axios
-      .get("http://localhost:5000/api/v1/category/get-categories")
+      .get("https://palette-tales.onrender.com/api/v1/category/get-categories")
       .then((response) => setCategories(response.data.categories))
       .catch((err) => console.log(err));
   };
@@ -71,7 +71,7 @@ function UpdateProduct() {
       values.image_src=productImage;
     }
     const res = await axios
-    .put(`http://localhost:5000/api/v1/products/updateProduct/${params.id}`,values)
+    .put(`https://palette-tales.onrender.com/api/v1/products/updateProduct/${params.id}`,values)
     .then((res)=>{
       console.log(res);
       if(res.data.success){
@@ -132,7 +132,7 @@ function UpdateProduct() {
                   placeholder="product info"
                   name="product_info"
                   value={values.product_info}
-                  onChange={(e) => setProductInfo(e.target.value)}
+                  onChange={handleChange}
                 />
                 <br />
                 <div className="admin-dropdown-container">

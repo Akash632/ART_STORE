@@ -9,15 +9,16 @@ function Orders() {
   const [status,setStatus]=useState(["Not Process", 'Processing',"Shipped","delivered","cancelled"]);
   const [changeStatus,setChangeStatus]=useState("");
   const getData= async ()=>{
-    const res = await axios.get("http://localhost:5000/api/v1/auth/all-orders");
+    const res = await axios.get("https://palette-tales.onrender.com/api/v1/auth/all-orders");
     setData(res.data.result);
   }
 
   const updateData= async (id)=>{
-    const res = await axios.put(`http://localhost:5000/api/v1/auth/order-status/${id}`,{status:changeStatus});
-    if(res.data.success){
-      getData();
-    }
+    // const res = await axios.put(`https://palette-tales.onrender.com/api/v1/auth/order-status/${id}`,{status:changeStatus});
+    // if(res.data.success){
+    //   getData();
+    // }
+    console.log(changeStatus)
   }
   useEffect(()=>{
     getData()

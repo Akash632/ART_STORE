@@ -6,6 +6,23 @@
     overflow-y: hidden;
     width: 100%;
 }
+.load-more-btn{
+    color: white;
+    background-color: #394a6e;
+    border-style: none;
+    border-width: 0px;
+    box-sizing: border-box;
+    padding: 15px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    border: solid 1px #394a6e;
+}
+.load-more-btn:hover{
+    background-color: transparent;
+    color: #394a6e;
+}
 .shop-image-container-bg{
     width: 30%;
     margin-bottom: 20px;
@@ -56,8 +73,37 @@
 .shop-container-main{
     width: 80%;
 }
+.shop-container-category-main{
+    width: 100%;
+    height: 700px;
+}
+.shop-container-category-main-before{
+    width: 100%;
+    height: 100%;
+}
+.category-spinner{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .shop-page-root-container{
     padding: 15px;
+}
+.shop-page-root-container-before{
+    width: 100%;
+    padding: 15px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cliploader{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .shop-card-text-container>h1{
     font-size: 20px;

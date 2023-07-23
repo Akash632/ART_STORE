@@ -1,23 +1,25 @@
 import React, {useState,useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CategoryWise() {
   const params = useParams();
   const [products, setProducts] = useState();
   const navigate=useNavigate();
+  const[loading,setLoading]=useState(true);
 
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/products/getProductsByCategory/${params.value}`
+        `https://palette-tales.onrender.com/api/v1/products/getProductsByCategory/${params.value}`
       )
       .then((res) => setProducts(res.data.products))
       .catch((err) => console.log(err));
   });
   return (
-    <div className="shop-container-main">
-      <div className="shop-container-bg">
+    <div className="shop-container-category-main">
+      {products?(      <div className="shop-container-bg">
         {products && products.map((value) => (
               <div
                 className="shop-image-container-bg"
@@ -42,7 +44,11 @@ function CategoryWise() {
                 </div>
               </div>
             ))}
-      </div>
+      </div>):(
+        <div className="category-spinner">
+          <ClipLoader color="#1b52a6" loading={loading}/>
+        </div>
+      )}
     </div>
   );
 }

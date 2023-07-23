@@ -14,7 +14,7 @@ function UserOrders() {
 
   const getData = async () => {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/auth/orders/${auth.user._id}`
+      `https://palette-tales.onrender.com/api/v1/auth/orders/${auth.user._id}`
     );
     setData(res.data.result);
   };

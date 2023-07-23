@@ -259,6 +259,7 @@ const brainTreeShopPayementController= async(req,res)=>{
   try{
     const {nonce,data}= req.body;
 
+    console.log(data);
     let total = 0
 
     total = data.original_price*data.quantity

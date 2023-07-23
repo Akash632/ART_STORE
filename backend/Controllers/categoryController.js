@@ -6,27 +6,27 @@ const createCategoryController = async (req,res)=>{
     try{
         const {name} = req.body;
         console.log(name);
-        // if(!name){
-        //     return res.status(401).send(
-        //         {
-        //             message:"Name is required"
-        //         }
-        //     )
-        // }
-        // const existingCategory = await categoryModel.findOne({name:name});
-        // if(existingCategory){
-        //     return res.status(200).send({
-        //         success:true,
-        //         message:"Category already exists"
-        //     })
-        // }
+            if(!name){
+                return res.status(401).send(
+                    {
+                        message:"Name is required"
+                    }
+                )
+            }
+            const existingCategory = await categoryModel.findOne({name:name});
+            if(existingCategory){
+                return res.status(200).send({
+                    success:true,
+                    message:"Category already exists"
+                })
+            }
 
-        // const category = await new categoryModel({name,slug:slugify(name)}).save()
-        // res.status(200).send({
-        //     success:true,
-        //     message:"New category has been created",
-        //     category
-        // })
+            const category = await new categoryModel({name,slug:slugify(name)}).save()
+            res.status(200).send({
+                success:true,
+                message:"New category has been created",
+                category
+            })
     }catch(err){
         res.status(500).send({
             success:false,

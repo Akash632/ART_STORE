@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerController, loginController, getOrdersController, getAllOrdersController, orderStatusController } = require('../Controllers/authController');
+const { registerController, loginController, getOrdersController, getAllOrdersController, orderStatusController, updateUserController } = require('../Controllers/authController');
 const { requireSignIn,isAdmin } = require('../Middlewares/authMiddleware');
 
 const router = express.Router();
@@ -21,5 +21,7 @@ router.get('/orders/:id',requireSignIn,getOrdersController);
 router.get('/all-orders',requireSignIn,isAdmin,getAllOrdersController);
 
 router.put('/order-status/:id',requireSignIn,isAdmin,orderStatusController);
+
+router.put('/update-user',requireSignIn,updateUserController);
 
 module.exports = router;

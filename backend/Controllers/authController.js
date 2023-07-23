@@ -168,4 +168,31 @@ const orderStatusController=async(req,res)=>{
     })
   }
 }
-module.exports = {registerController, loginController,getOrdersController,getAllOrdersController,orderStatusController};
+
+
+const updateUserController = async (req,res)=>{
+  try{
+    const {_id,name,email,phone,address} = req.body;
+
+    if(!name||!email||!phone||!address){
+      return res.status(403).send({
+        success:false,
+        message:"Please enter valid details"
+      })
+    }
+    const user = await userModel.findByIdAndUpdate({_id:_id},{name,email,phone,address},{new:true});
+
+    res.status(200).send({
+      success:true,
+      message:"Profile updated successfully",
+      data:user
+    })
+  }catch(err){
+    console.log(err);
+    res.status(200).send({
+      success:false,
+      message:"Internal server error"
+    })
+  }
+}
+module.exports = {registerController, loginController,getOrdersController,getAllOrdersController,orderStatusController,updateUserController};

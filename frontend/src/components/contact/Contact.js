@@ -28,7 +28,7 @@ function Contact() {
   }
 
 const postData = async ()=>{
-  let res = await axios.post('http://localhost:5000/contact',{
+  let res = await axios.post('https://palette-tales.onrender.com/contact',{
     name:data.name,
     phone:data.phone,
     email:data.email,

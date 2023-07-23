@@ -5,6 +5,7 @@ import "./ProductDetails.css";
 import { UserContext } from "../../context/context";
 import { disableScroll, enableScroll } from "../../functions/functions";
 import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function ProductDetails() {
   const { navStatus, setNavStatus } = useContext(UserContext);
@@ -12,6 +13,8 @@ function ProductDetails() {
   const { auth, setAuth } = useContext(UserContext);
   const [cartItems, setCartItems] = useState();
   const navigate = useNavigate();
+  const [loading,setLoading]=useState(true);
+
 
   if (navStatus) {
     disableScroll();
@@ -25,7 +28,7 @@ function ProductDetails() {
   useEffect(() => {
     auth.user &&
       axios
-        .get(`http://localhost:5000/api/v1/cart/getCart/${auth.user._id}`)
+        .get(`https://palette-tales.onrender.com/api/v1/cart/getCart/${auth.user._id}`)
         .then((res) => {
           if (res.data.success) {
             setCartItems(res.data.result);
@@ -34,9 +37,10 @@ function ProductDetails() {
         .catch((err) => console.log(err));
 
     axios
-      .get(`http://localhost:5000/api/v1/products/getProducts/${params.id}`)
+      .get(`https://palette-tales.onrender.com/api/v1/products/getProducts/${params.id}`)
       .then((response) => {
         setData(response.data.details);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
 
@@ -64,7 +68,7 @@ function ProductDetails() {
     }
   };
   return (
-    <div className="product-details-bg-container">
+    <div className={data?"product-details-bg-container":"product-details-bg-container-before"}>
       {data ? (
         <div className="product-details-section">
           <div className="product-details-main-image">
@@ -130,16 +134,18 @@ function ProductDetails() {
             )}
             <div className="product-details-info-container">
               <h1>Product Info</h1>
-              <ul className="product-details-list">
+              <div className="product-details-list">
                 {data.product_info.map((value, index) => (
-                  <li key={index}>{value}</li>
+                  <p key={index}>{value}</p>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
       ) : (
-        <h1>LOADING</h1>
+        <div className="product-spinner">
+          <ClipLoader color="#1b52a6" loading={loading} />
+        </div>
       )}
     </div>
   );

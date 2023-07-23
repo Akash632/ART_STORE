@@ -11,16 +11,17 @@ function CreateCategory() {
   const [postId,setPostId]= useState("");
 
   const getCategory = async()=>{
-    const res=await axios.get('http://localhost:5000/api/v1/category/get-categories');
+    const res=await axios.get('https://palette-tales.onrender.com/api/v1/category/get-categories');
     if(res.data.success){
       setData(res.data.categories);
+      console.log(res.data);
     }else{
       console.log(res.data.message)
     }
   }
 
   const createCategory = async () =>{
-    const res = await axios.post('http://localhost:5000/api/v1/category/create-category',{
+    const res = await axios.post('https://palette-tales.onrender.com/api/v1/category/create-category',{
       name
     });
     if(res.data.success){
@@ -39,7 +40,7 @@ function CreateCategory() {
     console.log(postId);
   }
   const updateCategory = async ()=>{
-     const res = await axios.put(`http://localhost:5000/api/v1/category/update-category/${postId}`,{
+     const res = await axios.put(`https://palette-tales.onrender.com/api/v1/category/update-category/${postId}`,{
       name
     });
     console.log(res);
@@ -50,7 +51,7 @@ function CreateCategory() {
     }    // console.log("Hello")
   }
   const deleteCategory=async (itemId)=>{
-    axios.delete(`http://localhost:5000/api/v1/category/delete-category/${itemId}`)
+    axios.delete(`https://palette-tales.onrender.com/api/v1/category/delete-category/${itemId}`)
     .then((res)=>{
       if(res.data.success){
         getCategory();

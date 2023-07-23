@@ -17,7 +17,7 @@ function Login() {
   const {auth,setAuth}=useContext(UserContext);
 
   const handleSignUp = async ()=>{
-    const res = await axios.post('http://localhost:5000/api/v1/auth/register',{
+    const res = await axios.post('https://palette-tales.onrender.com/api/v1/auth/register',{
       name:signUp.name,
       email:signUp.email,
       password:signUp.password,
@@ -36,7 +36,7 @@ function Login() {
 
 
   const handleLogin = async()=>{
-    const res = await axios.post('http://localhost:5000/api/v1/auth/login',{
+    const res = await axios.post('https://palette-tales.onrender.com/api/v1/auth/login',{
       email:loginData.email,
       password:loginData.password
     })

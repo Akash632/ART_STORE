@@ -8,14 +8,14 @@ function GetProduct() {
   const navigate=useNavigate();
   const [data,setData]=useState();
   const getProducts=async()=>{
-    const res = await axios.get('http://localhost:5000/api/v1/products/getproducts')
+    const res = await axios.get('https://palette-tales.onrender.com/api/v1/products/getproducts')
     .then((res)=>{setData(res.data.products)
     console.log(res.data)})
     .catch((err)=>console.log(err));
   }
 
   const deleteProducts = async (id)=>{
-    const res = await axios.delete(`http://localhost:5000/api/v1/products/deleteProduct/${id}`)
+    const res = await axios.delete(`https://palette-tales.onrender.com/api/v1/products/deleteProduct/${id}`)
     .then((res)=>{
       if(res.data.success){
         toast(res.data.message);

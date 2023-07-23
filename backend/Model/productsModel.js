@@ -25,7 +25,7 @@ const productModel = new mongoose.Schema({
     require: true,
   },
   product_info: {
-    type: Array,
+    type: String,
     trim: true,
     require: true,
   },

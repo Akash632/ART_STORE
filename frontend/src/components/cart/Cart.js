@@ -32,7 +32,7 @@ function Cart() {
   const getToken = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/v1/products/braintree/token")
+        .get("https://palette-tales.onrender.com/api/v1/products/braintree/token")
         .then((res) => {
           setClientToken(res.data.clientToken);
         })
@@ -47,7 +47,7 @@ function Cart() {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       await axios
-        .post("http://localhost:5000/api/v1/products/braintree/cartPayement", {
+        .post("https://palette-tales.onrender.com/api/v1/products/braintree/cartPayement", {
           nonce,
           cart,
         })

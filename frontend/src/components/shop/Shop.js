@@ -7,6 +7,8 @@ import { disableScroll, enableScroll } from "../../functions/functions";
 import { useAuth } from "../../context/auth";
 import { UserContext } from "../../context/context";
 import prices from '../../filters/price.js';
+import ClipLoader from "react-spinners/ClipLoader";
+
 
 function Shop() {
   const { navStatus, setNavStatus } = useContext(UserContext);
@@ -15,6 +17,8 @@ function Shop() {
   const[data,setData]= useState();
   const [radio,setRadio] = useState([]);
   const[filter,setFilter]=useState(false);
+  const[index,setIndex]=useState(9);
+  const[loading,setLoading]=useState(true);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -42,23 +46,26 @@ function Shop() {
 
   const getProducts = ()=>{
     axios
-    .get("http://localhost:5000/api/v1/products/getproducts")
-    .then((response) => setShopItems(response.data.products))
+    .get("https://palette-tales.onrender.com/api/v1/products/getproducts")
+    .then((response) => {
+      setShopItems(response.data.products)
+      setLoading(false);
+    })
     .catch((err) => console.log(err));
   }
 
   const getCategories = ()=>{
-    axios.get('http://localhost:5000/api/v1/category/get-categories')
+    axios.get('https://palette-tales.onrender.com/api/v1/category/get-categories')
       .then((response)=>setCategories(response.data.categories))
       .catch((err)=>console.log(err));
   }
   useEffect(() => {
     getProducts();
     getCategories();
-  }, []);
+  }, [index]);
 
   useEffect(()=>{
-    axios.post("http://localhost:5000/api/v1/products/getProductsByFilter",{checked})
+    axios.post("https://palette-tales.onrender.com/api/v1/products/getProductsByFilter",{checked})
     .then((response)=>{
       setData(response.data)
     })
@@ -91,10 +98,9 @@ function Shop() {
       console.log(radio);
     }
   }
-  console.log(filter);
   return (
-    <div className="shop-page-root-container">
-    <div className="shop-page-main-container">
+    <div className={data?"shop-page-root-container":"shop-page-root-container-before"}>
+      {data?( <div className="shop-page-main-container">
     <div className="shop-filter-main-container">
       <button className="shop-filter-btn" onClick={()=>setFilter(!filter)}>Filter</button>
       <div className={filter?"shop-filter-container shop-filter-container-active":"shop-filter-container"}>
@@ -146,7 +152,7 @@ function Shop() {
                   )}
                 </div>
               </div>
-            </div>))):(shopItems&&shopItems.slice(firstIndex, lastIndex).map((value, index) => (
+            </div>))):(shopItems&&shopItems.slice(0,index).map((value, index) => (
             <div
               className="shop-image-container-bg"
               key={index}
@@ -177,21 +183,10 @@ function Shop() {
           )))}
       </div>
       <div className="shop-card-pagination">
-        <div>
-          {myArray &&
-            myArray.map((page, index) => (
-              <span
-                onClick={() => setCurrentPage(page)}
-                className="shop-card-pagination-numbers"
-                key={index}
-              >
-                {page}
-              </span>
-            ))}
-        </div>
+        <button onClick={()=>setIndex(index+9)} className="load-more-btn">Load more</button>
       </div>
       </div>
-    </div>
+    </div>):<div className="cliploader"><ClipLoader color="#1b52a6" loading={loading} /></div>}
     </div>
   );
 }
