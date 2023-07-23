@@ -31,6 +31,7 @@ function ProductDetails() {
         .get(`https://palette-tales.onrender.com/api/v1/cart/getCart/${auth.user._id}`)
         .then((res) => {
           if (res.data.success) {
+            console.log(data);
             setCartItems(res.data.result);
           }
         })
@@ -67,6 +68,7 @@ function ProductDetails() {
     toast("Item added to cart");
     }
   };
+
   return (
     <div className={data?"product-details-bg-container":"product-details-bg-container-before"}>
       {data ? (
@@ -135,9 +137,7 @@ function ProductDetails() {
             <div className="product-details-info-container">
               <h1>Product Info</h1>
               <div className="product-details-list">
-                {data.product_info.map((value, index) => (
-                  <p key={index}>{value}</p>
-                ))}
+                <p>{data.product_info}</p>
               </div>
             </div>
           </div>

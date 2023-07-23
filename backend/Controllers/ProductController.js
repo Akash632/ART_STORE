@@ -14,6 +14,7 @@ var gateway = new braintree.BraintreeGateway({
 
 const addProductController = async (req, res) => {
   try {
+    console.log()
     const {
       title,
       original_price,
@@ -94,11 +95,14 @@ const productDetailsController = async (req, res) => {
     const { id } = req.params;
 
     const productDetails = await productModel.findOne({ _id: id });
+
+    console.log(productDetails);
     res.status(200).send({
       success: true,
       details: productDetails,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).send({
       success: false,
       message: "Its not you. It's you",
@@ -108,14 +112,25 @@ const productDetailsController = async (req, res) => {
 
 const getProductsByFilterController = async (req, res) => {
   try {
-    const { checked } = req.body;
+    const { checked,radio } = req.body;
+    let radioArray;
+    if(radio.length>0){
+      radioArray=radio[0].split(",");
+    }
     let args = {};
-    // if(checked.length>0){
-    //    args.category = checked
-    // }
-    const products = await productModel.find({ category: { $in: checked } });
-    res.send(products);
+    if(checked.length>0){
+       args.category = checked
+    }
+    if(radio.length) args.original_price={$gte:Number(radioArray[0]),$lte:Number(radioArray[1])}
+    const products = await productModel.find(args);
+    // console.log(products);
+    res.status(200).send({
+      success:true,
+      message:"Products of filtered products",
+      products:products
+    });
   } catch (err) {
+    console.log(err);
     res.status(500).send({
       success: false,
       message: "It's not you. It's us",

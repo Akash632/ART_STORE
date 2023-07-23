@@ -45,7 +45,7 @@ function LatestCollection() {
     }
     useEffect(()=>{
         getData();
-    })
+    },[])
     const navigate = useNavigate();
   return (
     <div className='latest-collection-bg'>

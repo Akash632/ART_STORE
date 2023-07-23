@@ -65,17 +65,18 @@ function Shop() {
   }, [index]);
 
   useEffect(()=>{
-    axios.post("https://palette-tales.onrender.com/api/v1/products/getProductsByFilter",{checked})
+    axios.post("http://localhost:5000/api/v1/products/getProductsByFilter",{checked,radio})
     .then((response)=>{
       setData(response.data)
+      console.log(data);
     })
     .catch(err=>console.log(err));
-  },[checked])
+  },[checked,radio])
 
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [currentPage]);
 
   const handleCategories = (item,id)=>{
     let all=[...checked];
@@ -88,16 +89,9 @@ function Shop() {
   }
 
   const handleRadio = (e)=>{
-    if(e.target.checked){
-      let newValues = e.target.value.split(",");
-      if(radio.length===0){
-        radio.push(...newValues);
-      }else{
-        radio.splice(0,1,newValues);
-      }
-      console.log(radio);
-    }
   }
+
+  console.log(radio);
   return (
     <div className={data?"shop-page-root-container":"shop-page-root-container-before"}>
       {data?( <div className="shop-page-main-container">
@@ -119,7 +113,7 @@ function Shop() {
         <h1>Shop by Amount</h1>
         <div className="amount-filter-main-container">
         {prices.map((item)=>(
-        <div key={item._id} onChange={(e)=>handleRadio(e)} className="amount-filter">
+        <div key={item._id} onChange={(e)=>setRadio([e.target.value])} className="amount-filter">
         <input type="radio" value={item.array} id="category-checkbox" name="radio"/>
         <label htmlFor="category-checkbox">{item.name}</label><br/>
         </div>

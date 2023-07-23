@@ -15,8 +15,6 @@ function CreateProducts() {
     product_status: "",
     product_info:""
   });
-
-  const [productInfo, setProductInfo] = useState([]);
   const [productImage, setProductImage] = useState();
 
   useEffect(() => {
@@ -56,9 +54,10 @@ function CreateProducts() {
 
     // console.log(productInfo);
     // data.product_info = product_Info;
+    console.log(data);
     data.image_src = productImage;
     axios
-      .post("https://palette-tales.onrender.com/api/v1/products/addProduct", data)
+      .post("http://localhost:5000/api/v1/products/addProduct", data)
       .then((res) => {
         console.log(res);
         document.getElementById("message").textContent = "";
