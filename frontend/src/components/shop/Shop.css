@@ -271,7 +271,6 @@
         padding: 10px;
         display: none;
         justify-content: space-between;
-        border: solid 1px black;
     }
     .shop-filter-container-active{
         display: flex;
@@ -315,7 +314,6 @@
         padding: 10px;
         display: none;
         justify-content: space-between;
-        border: solid 1px black;
     }
     .shop-filter-container-active{
         display: flex;

@@ -48,7 +48,8 @@ function Shop() {
     axios
     .get("https://palette-tales.onrender.com/api/v1/products/getproducts")
     .then((response) => {
-      setShopItems(response.data.products)
+      setShopItems(response.data.products);
+      console.log("shopItems",shopItems)
       setLoading(false);
     })
     .catch((err) => console.log(err));
@@ -67,8 +68,8 @@ function Shop() {
   useEffect(()=>{
     axios.post("http://localhost:5000/api/v1/products/getProductsByFilter",{checked,radio})
     .then((response)=>{
-      setData(response.data)
-      console.log(data);
+      setData(response.data.products)
+      console.log("data",data);
     })
     .catch(err=>console.log(err));
   },[checked,radio])
@@ -125,7 +126,7 @@ function Shop() {
     </div>  
     <div className="shop-container-main">
       <div className="shop-container-bg">
-        {data&&data.length>0?( data.map((value)=>(<div
+        {data&&data.length>0?( data.slice(0,index).map((value)=>(<div
               className="shop-image-container-bg"
               key={value._id}
               onClick={() => navigate(`/shop/${value._id}`)}

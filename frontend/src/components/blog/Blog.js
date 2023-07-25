@@ -42,7 +42,7 @@ function Blog() {
               the surroundings and are then digitized and designed to bring to
               you a line of art products curated with lots of love.
             </p>
-            <div>
+            <div className="about-card-artist-para">
               <h1>About the Artist</h1>
               <p>The Tinted Palette was created by Anjana three years ago on
               Instagram with the mere intention to share art with friends and

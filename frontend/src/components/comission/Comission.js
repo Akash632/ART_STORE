@@ -5,6 +5,7 @@ import { disableScroll,enableScroll } from "../../functions/functions";
 import { motion,AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
+import { toast } from "react-toastify";
 
 
 function Comission() {
@@ -27,14 +28,14 @@ function Comission() {
   }
 
   const handleSubmit= async ()=>{
-    let res = await axios.post('https://palette-tales.onrender.com/comissions',{
+    let res = await axios.post('https://palette-tales.onrender.com/api/v1/comissions/comissions-query',{
       name:data.name,
       phone:data.phone,
       email:data.email,
       requirements:data.requirements
     })
     if(res.data.success){
-      console.log(res.data.message);
+      toast(res.data.message);
     }
     else{
       console.log(res.data.message);

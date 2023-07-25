@@ -6,6 +6,7 @@ import CallOutlinedIcon from "@mui/icons-material/CallOutlined";
 import { UserContext } from "../../context/context";
 import { disableScroll,enableScroll } from "../../functions/functions";
 import axios from 'axios';
+import { toast } from "react-toastify";
 
 
 function Contact() {
@@ -28,14 +29,15 @@ function Contact() {
   }
 
 const postData = async ()=>{
-  let res = await axios.post('https://palette-tales.onrender.com/contact',{
+  console.log(data);
+  let res = await axios.post('https://palette-tales.onrender.com/api/v1/contact/contact-us',{
     name:data.name,
     phone:data.phone,
     email:data.email,
     comment:data.comment
   })
   if(res.data.success){
-    console.log(res.data.message);
+    toast(res.data.message);
   }
   else{
     console.log(res.data.message);
