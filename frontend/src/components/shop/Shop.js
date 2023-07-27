@@ -66,7 +66,7 @@ function Shop() {
   }, [index]);
 
   useEffect(()=>{
-    axios.post("http://localhost:5000/api/v1/products/getProductsByFilter",{checked,radio})
+    axios.post("https://palette-tales.onrender.com/api/v1/products/getProductsByFilter",{checked,radio})
     .then((response)=>{
       setData(response.data.products)
       console.log("data",data);

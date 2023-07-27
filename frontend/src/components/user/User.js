@@ -15,8 +15,6 @@ function User() {
 
   return (
     <div>
-      <div className="comission-page-heading-container">
-      </div>
       <div className="admin-dashboard-main-container">
         <div className="admin-dashboard-menu-container">
           <UserDashboardMenu />

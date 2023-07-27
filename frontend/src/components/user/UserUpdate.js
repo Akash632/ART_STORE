@@ -3,6 +3,8 @@ import UserDashboardMenu from "./UserDashboardMenu";
 import { UserContext } from "../../context/context";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 function UserUpdate() {
   // const [auth,setAuth]=useAuth();
   const { auth, setAuth } = useContext(UserContext);
@@ -24,8 +26,9 @@ function UserUpdate() {
   }
 
   const handleUpdate = async ()=>{
-    const {data} = await axios.put('http://localhost:5000/api/v1/auth/update-user',values);
+    const {data} = await axios.put('https://palette-tales.onrender.com/api/v1/auth/update-user',values);
     if(data.success){
+      toast(data.message);
         setAuth({...auth,user:data?.data});
         let ls = localStorage.getItem('auth');
         ls = JSON.parse(ls);

@@ -43,7 +43,7 @@ const getData=async()=>{
       const { nonce } = await instance.requestPaymentMethod();
       console.log("product data",data);
       await axios
-        .post("http://localhost:5000/api/v1/products/braintree/shopPayement", {
+        .post("https://palette-tales.onrender.com/api/v1/products/braintree/shopPayement", {
           nonce,
           data,
         })
